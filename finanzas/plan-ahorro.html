@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Meta de Ahorro Mensual — Numera</title>
+  <meta name="description" content="Calcula cuánto dinero debes ahorrar cada mes o cada semana para alcanzar tu meta financiera en el plazo que elijas.">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/plan-ahorro.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/savings-goal.html">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calculadora de Meta de Ahorro Mensual — Numera",
+        "url": "https://numera.app/finanzas/plan-ahorro.html",
+        "description": "Calcula cuánto dinero debes ahorrar cada mes o cada semana para alcanzar tu meta financiera en el plazo que elijas.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "inLanguage": "es",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿De cuánto debería ser un fondo de emergencia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La recomendación estándar es acumular entre 3 y 6 meses de tus gastos fijos esenciales en un instrumento líquido y de bajo riesgo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué pasa si no recibo intereses por mi ahorro?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simplemente coloca 0 % en el campo de rendimiento anual para obtener la división lineal exacta entre los meses elegidos."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Selector de idioma">
+        <a href="plan-ahorro.html" class="lang-link active" lang="es">ES</a>
+        <a href="../en/finance/savings-goal.html" class="lang-link" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span>/</span>
+      <span>Meta de Ahorro</span>
+    </nav>
+
+    <h1 class="page-title">Calculadora de Meta de Ahorro</h1>
+    <p class="page-subtitle">Define el monto objetivo y el plazo para conocer exactamente cuánto debes apartar cada mes.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="target-goal" class="form-label">Monto objetivo a reunir</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="target-goal" class="form-input has-prefix" value="5000" min="1" step="100" inputmode="decimal">
+          </div>
+          <input type="range" id="goal-slider" class="range-slider" min="500" max="100000" step="500" value="5000" aria-label="Deslizador de monto objetivo">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="current-savings" class="form-label">Ahorro inicial disponible</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="current-savings" class="form-input has-prefix" value="500" min="0" step="50" inputmode="decimal">
+          </div>
+          <input type="range" id="initial-slider" class="range-slider" min="0" max="50000" step="250" value="500" aria-label="Deslizador de ahorro inicial">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="months-period" class="form-label">Plazo en meses</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="months-period" class="form-input has-suffix" value="12" min="1" max="360" step="1" inputmode="numeric">
+            <span class="input-suffix">meses</span>
+          </div>
+          <input type="range" id="months-slider" class="range-slider" min="1" max="60" step="1" value="12" aria-label="Deslizador de meses">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="annual-yield" class="form-label">Rendimiento anual (opcional)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="annual-yield" class="form-input has-suffix" value="4" min="0" max="50" step="0.5" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="rate-slider" class="range-slider" min="0" max="20" step="0.5" value="4" aria-label="Deslizador de rendimiento anual">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Ahorro mensual necesario</span>
+        <div id="result-monthly" class="result-main-value">$366.74</div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-deposited" class="ratio-fill-primary" style="width: 98%;"></div>
+          <div id="bar-yield" class="ratio-fill-accent" style="width: 2%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Equivalente semanal</span>
+            <strong id="result-weekly">$84.63</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Total salido de tu bolsillo (Azul)</span>
+            <strong id="result-deposited">$4,900.88</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Intereses a tu favor (Verde)</span>
+            <strong id="result-yield" style="color: var(--accent);">$99.12</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copiar resumen</button>
+          <button type="button" id="share-btn" class="btn btn-primary">Compartir enlace</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario Integrado</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>Cómo planificar una meta de ahorro realista</h2>
+      <p>Dividir un objetivo grande en cuotas mensuales o semanales reduce la fricción mental y te permite automatizar transferencias apenas recibes tus ingresos.</p>
+
+      <h3>Fórmula de cuota de ahorro</h3>
+      <div class="formula-box">Ahorro Mensual = (Meta - Ahorro Inicial) / Meses</div>
+      <p>Si guardas el dinero en una cuenta con rendimiento anual, los intereses generados cubren una parte de la meta y reducen la cuota mensual que debes aportar de tu bolsillo.</p>
+
+      <h3>Preguntas frecuentes</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿De cuánto debería ser un fondo de emergencia?</summary>
+          <p>La recomendación estándar es acumular entre <strong>3 y 6 meses</strong> de tus gastos fijos esenciales en un instrumento líquido y de bajo riesgo.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué pasa si no recibo intereses por mi ahorro?</summary>
+          <p>Simplemente coloca <strong>0 %</strong> en el campo de rendimiento anual para obtener la división lineal exacta entre los meses elegidos.</p>
+        </details>
+      </div>
+    </article>
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Otras calculadoras financieras</h2>
+      <div class="cards-grid">
+        <a href="interes-compuesto.html" class="calc-card">
+          <span class="calc-card-tag">Inversión</span>
+          <h3>Interés Compuesto</h3>
+          <p>Proyecta el crecimiento de tu capital reinvirtiendo los intereses mes a mes.</p>
+        </a>
+        <a href="margen-ganancia.html" class="calc-card">
+          <span class="calc-card-tag">Negocios</span>
+          <h3>Margen de Ganancia</h3>
+          <p>Calcula el precio de venta exacto y la utilidad neta a partir del costo de tu producto.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Herramientas de cálculo gratuito.</p>
+      <div class="footer-links">
+        <a href="../index.html">Todas las calculadoras</a>
+        <a href="../legal/privacidad.html">Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/calculadoras/savings-goal.js"></script>
+</body>
+</html>

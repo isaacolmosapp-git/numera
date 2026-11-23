@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Préstamos y Cuota Mensual (Francés y Simple) — Numera</title>
+  <meta name="description" content="Calcula la cuota mensual de un préstamo bajo sistema francés (saldo insoluto) o interés simple, con tasa anual o mensual y plazo en años o meses.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/calculadora-prestamos.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/loan-calculator.html">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calculadora de Préstamos y Cuota Mensual — Numera",
+        "url": "https://numera.app/finanzas/calculadora-prestamos.html",
+        "description": "Calcula la cuota mensual de un préstamo bajo sistema francés (saldo insoluto) o interés simple, con tasa anual o mensual y plazo en años o meses.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "inLanguage": "es",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cuál es la diferencia entre el sistema francés y el interés simple?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En el sistema francés los intereses se calculan cada mes únicamente sobre el capital que aún debes (saldo insoluto), por lo que pagas menos intereses totales. En el interés simple (o directo), el interés se calcula sobre el monto total inicial durante todo el plazo, resultando en una cuota más alta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo puedo reducir el costo total de un crédito?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Reduciendo el plazo en meses o años, eligiendo créditos sobre saldo insoluto (sistema francés) o realizando abonos directos a capital."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Selector de idioma">
+        <a href="calculadora-prestamos.html" class="lang-link active" lang="es">ES</a>
+        <a href="../en/finance/loan-calculator.html" class="lang-link" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span>/</span>
+      <span>Préstamos y Cuotas</span>
+    </nav>
+
+    <h1 class="page-title">Calculadora de Préstamos y Cuota Mensual</h1>
+    <p class="page-subtitle">Compara y calcula cuotas bajo sistema francés (saldo insoluto) o interés simple, con tasas anuales o mensuales.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <span class="form-label">Tipo de cálculo</span>
+            <div class="unit-toggle" role="group" aria-label="Sistema de amortización">
+              <button type="button" class="unit-btn active" data-loan-type="french">Francés</button>
+              <button type="button" class="unit-btn" data-loan-type="simple">Simple</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="loan-amount" class="form-label">Monto del préstamo</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="loan-amount" class="form-input has-prefix" value="500" min="1" step="50" inputmode="decimal">
+          </div>
+          <input type="range" id="amount-slider" class="range-slider" min="100" max="50000" step="100" value="500" aria-label="Deslizador de monto del préstamo">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="interest-rate" class="form-label">Tasa de interés</label>
+            <div class="unit-toggle" role="group" aria-label="Período de tasa">
+              <button type="button" class="unit-btn active" data-rate-unit="annual">Anual</button>
+              <button type="button" class="unit-btn" data-rate-unit="monthly">Mensual</button>
+            </div>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="interest-rate" class="form-input has-suffix" value="10" min="0" max="100" step="0.25" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="rate-slider" class="range-slider" min="0.5" max="40" step="0.25" value="10" aria-label="Deslizador de tasa de interés">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="loan-term" class="form-label">Plazo del préstamo</label>
+            <div class="unit-toggle" role="group" aria-label="Unidad de plazo">
+              <button type="button" class="unit-btn active" data-term-unit="years">Años</button>
+              <button type="button" class="unit-btn" data-term-unit="months">Meses</button>
+            </div>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="loan-term" class="form-input has-suffix" value="2" min="1" max="40" step="1" inputmode="numeric">
+            <span id="term-suffix" class="input-suffix">años</span>
+          </div>
+          <input type="range" id="term-slider" class="range-slider" min="1" max="30" step="1" value="2" aria-label="Deslizador de plazo">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Cuota mensual estimada</span>
+        <div id="result-monthly" class="result-main-value">$23.07</div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-principal" class="ratio-fill-primary" style="width: 90%;"></div>
+          <div id="bar-interest" class="ratio-fill-accent" style="width: 10%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Capital solicitado (Azul)</span>
+            <strong id="result-principal-display">$500.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Total de intereses (Verde)</span>
+            <strong id="result-interest" style="color: var(--accent);">$53.74</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Monto total a pagar</span>
+            <strong id="result-total">$553.74</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copiar resumen</button>
+          <button type="button" id="share-btn" class="btn btn-primary">Compartir enlace</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="schedule-details">
+      <summary id="schedule-summary-text" class="schedule-summary">Ver tabla de amortización anual</summary>
+      <div class="export-bar">
+        <button type="button" id="export-excel-btn" class="btn-export">Exportar Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Exportar PDF (.pdf)</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Período</th>
+              <th>Capital Amortizado</th>
+              <th>Intereses Pagados</th>
+              <th>Saldo Restante</th>
+            </tr>
+          </thead>
+          <tbody id="amortization-body"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario Integrado</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>Sistema Francés vs. Interés Simple en Préstamos</h2>
+      <p>Al solicitar financiamiento existen dos métodos principales para calcular tus cuotas:</p>
+      <ul>
+        <li><strong>Sistema Francés (Saldo insoluto):</strong> Es el estándar bancario. Pagas una cuota fija mensual, pero los intereses se calculan cada mes únicamente sobre el capital pendiente. A medida que amortizas deuda, pagas menos intereses.</li>
+        <li><strong>Interés Simple (Cuota lineal directa):</strong> Muy común en créditos comerciales o préstamos personales directos. El interés total se calcula sobre el monto inicial completo multiplicado por el tiempo, y el total resultante se divide en partes iguales.</li>
+      </ul>
+
+      <h3>Fórmulas aplicadas</h3>
+      <div class="formula-box">Francés: Cuota = P × [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]<br>Simple: Cuota = [ P + (P × r × n) ] / n</div>
+      <p>Donde <strong>P</strong> es el monto solicitado, <strong>r</strong> es la tasa de interés mensual y <strong>n</strong> el total de meses.</p>
+
+      <h3>Preguntas frecuentes</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Cuál es la diferencia entre el sistema francés y el interés simple?</summary>
+          <p>En el sistema francés los intereses se calculan cada mes únicamente sobre el capital que aún debes (saldo insoluto), por lo que pagas menos intereses totales. En el interés simple (o directo), el interés se calcula sobre el monto total inicial durante todo el plazo, resultando en una cuota más alta.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo puedo reducir el costo total de un crédito?</summary>
+          <p>Reduciendo el plazo en meses o años, eligiendo créditos sobre saldo insoluto (sistema francés) o realizando abonos directos a capital.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Otras calculadoras financieras</h2>
+      <div class="cards-grid">
+        <a href="interes-compuesto.html" class="calc-card">
+          <span class="calc-card-tag">Inversión</span>
+          <h3>Interés Compuesto</h3>
+          <p>Proyecta el crecimiento de tu capital a lo largo del tiempo con aportes mensuales.</p>
+        </a>
+        <a href="plan-ahorro.html" class="calc-card">
+          <span class="calc-card-tag">Ahorro</span>
+          <h3>Meta de Ahorro</h3>
+          <p>Descubre cuánto dinero debes apartar cada mes para alcanzar un objetivo financiero.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Herramientas de cálculo gratuito.</p>
+      <div class="footer-links">
+        <a href="../index.html">Todas las calculadoras</a>
+        <a href="../legal/privacidad.html">Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/export.js"></script>
+  <script src="../assets/js/calculadoras/loan-calculator.js"></script>
+</body>
+</html>

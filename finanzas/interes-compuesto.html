@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Interés Compuesto Online — Numera</title>
+  <meta name="description" content="Calcula el crecimiento de tus inversiones con interés compuesto y aportes mensuales. Visualiza el desglose año por año entre capital e intereses.">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/interes-compuesto.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/compound-interest.html">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calculadora de Interés Compuesto — Numera",
+        "url": "https://numera.app/finanzas/interes-compuesto.html",
+        "description": "Calcula el crecimiento de tus inversiones con interés compuesto y aportes mensuales. Visualiza el desglose entre capital aportado e intereses generados.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "inLanguage": "es",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué influye más: la tasa o el tiempo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En plazos largos (más de 10 o 15 años), el tiempo suele tener un impacto mayor que una pequeña diferencia en la tasa, porque la curva exponencial acelera en los últimos años."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Puedo compartir una simulación específica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. Pulsa el botón Compartir enlace para copiar una URL que guarda exactamente los montos, tasa y años que configuraste."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Selector de idioma">
+        <a href="interes-compuesto.html" class="lang-link active" lang="es">ES</a>
+        <a href="../en/finance/compound-interest.html" class="lang-link" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span>/</span>
+      <span>Interés Compuesto</span>
+    </nav>
+
+    <h1 class="page-title">Calculadora de Interés Compuesto</h1>
+    <p class="page-subtitle">Simula cuánto crecerá tu dinero reinvirtiendo los intereses generados mes a mes.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="initial-capital" class="form-label">Capital inicial</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="initial-capital" class="form-input has-prefix" value="1000" min="0" step="100" inputmode="decimal">
+          </div>
+          <input type="range" id="initial-slider" class="range-slider" min="0" max="50000" step="500" value="1000" aria-label="Deslizador de capital inicial">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="monthly-contribution" class="form-label">Aporte mensual</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="monthly-contribution" class="form-input has-prefix" value="150" min="0" step="10" inputmode="decimal">
+          </div>
+          <input type="range" id="monthly-slider" class="range-slider" min="0" max="5000" step="50" value="150" aria-label="Deslizador de aporte mensual">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="annual-rate" class="form-label">Tasa de interés anual</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="annual-rate" class="form-input has-suffix" value="8" min="0" max="100" step="0.5" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="rate-slider" class="range-slider" min="1" max="30" step="0.5" value="8" aria-label="Deslizador de tasa anual">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="years" class="form-label">Plazo en años</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="years" class="form-input has-suffix" value="10" min="1" max="50" step="1" inputmode="numeric">
+            <span class="input-suffix">años</span>
+          </div>
+          <input type="range" id="years-slider" class="range-slider" min="1" max="40" step="1" value="10" aria-label="Deslizador de años">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Saldo final estimado</span>
+        <div id="result-total" class="result-main-value">$29,662.21</div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-principal" class="ratio-fill-primary" style="width: 64%;"></div>
+          <div id="bar-interest" class="ratio-fill-accent" style="width: 36%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Total aportado (Azul)</span>
+            <strong id="result-contributions">$19,000.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Intereses generados (Verde)</span>
+            <strong id="result-interest" style="color: var(--accent);">$10,662.21</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copiar resumen</button>
+          <button type="button" id="share-btn" class="btn btn-primary">Compartir enlace</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="schedule-details">
+      <summary class="schedule-summary">Ver desglose año por año</summary>
+      <div class="export-bar">
+        <button type="button" id="export-excel-btn" class="btn-export">Exportar Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Exportar PDF (.pdf)</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Período</th>
+              <th>Aporte Acumulado</th>
+              <th>Interés del Año</th>
+              <th>Interés Acumulado</th>
+              <th>Saldo Final</th>
+            </tr>
+          </thead>
+          <tbody id="yearly-schedule-body"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario Integrado</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>¿Cómo funciona el interés compuesto?</h2>
+      <p>A diferencia del interés simple —donde los rendimientos se calculan únicamente sobre el capital inicial—, el interés compuesto reinvierte las ganancias obtenidas en cada período. De esta forma, los intereses generan nuevos intereses de manera exponencial con el paso del tiempo.</p>
+
+      <h3>Fórmula aplicada</h3>
+      <div class="formula-box">VF = P × (1 + r/n)^(n×t) + PMT × [ ((1 + r/n)^(n×t) - 1) / (r/n) ]</div>
+      <p>Donde <strong>P</strong> es el capital inicial, <strong>PMT</strong> el aporte mensual, <strong>r</strong> la tasa de interés anual en decimal, <strong>n</strong> los períodos por año (12) y <strong>t</strong> el tiempo en años.</p>
+
+      <h3>Preguntas frecuentes</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Qué influye más: la tasa o el tiempo?</summary>
+          <p>En plazos largos (más de 10 o 15 años), el tiempo suele tener un impacto mayor que una pequeña diferencia en la tasa, porque la curva exponencial acelera en los últimos años.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo compartir una simulación específica?</summary>
+          <p>Sí. Pulsa el botón <strong>Compartir enlace</strong> para copiar una URL que guarda exactamente los montos, tasa y años que configuraste.</p>
+        </details>
+      </div>
+    </article>
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Otras calculadoras financieras</h2>
+      <div class="cards-grid">
+        <a href="plan-ahorro.html" class="calc-card">
+          <span class="calc-card-tag">Ahorro</span>
+          <h3>Meta de Ahorro</h3>
+          <p>Calcula cuánto dinero debes apartar cada mes para alcanzar un objetivo financiero en el plazo elegido.</p>
+        </a>
+        <a href="margen-ganancia.html" class="calc-card">
+          <span class="calc-card-tag">Negocios</span>
+          <h3>Margen de Ganancia</h3>
+          <p>Determina el precio de venta exacto y la utilidad neta a partir del costo de tu producto.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Herramientas de cálculo gratuito.</p>
+      <div class="footer-links">
+        <a href="../index.html">Todas las calculadoras</a>
+        <a href="../legal/privacidad.html">Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/export.js"></script>
+  <script src="../assets/js/calculadoras/compound-interest.js"></script>
+</body>
+</html>

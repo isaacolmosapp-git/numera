@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan & Monthly Payment Calculator (Amortized & Simple) — Numera</title>
+  <meta name="description" content="Calculate your fixed monthly loan payment under standard amortized (reducing balance) or simple flat-rate interest, with annual or monthly rates.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/calculadora-prestamos.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/loan-calculator.html">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Loan & Monthly Payment Calculator — Numera",
+        "url": "https://numera.app/en/finance/loan-calculator.html",
+        "description": "Calculate your fixed monthly loan payment under standard amortized (reducing balance) or simple flat-rate interest, with annual or monthly rates.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between amortized and simple interest loans?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In an amortized loan (reducing balance), monthly interest is charged only on your remaining principal balance, lowering total interest paid. In a simple (flat-rate) loan, interest is calculated on the full original principal for the entire term, resulting in higher total interest."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I lower the total interest paid on a loan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Choosing a shorter loan term, opting for a reducing-balance amortized loan, or making extra principal-only payments significantly cuts total interest."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Language selector">
+        <a href="../../finanzas/calculadora-prestamos.html" class="lang-link" lang="es">ES</a>
+        <a href="loan-calculator.html" class="lang-link active" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <span>Loan Calculator</span>
+    </nav>
+
+    <h1 class="page-title">Loan & Monthly Payment Calculator</h1>
+    <p class="page-subtitle">Compare and estimate monthly payments under standard amortized or simple flat-rate interest.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Advertisement">
+      <span>Advertisement (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <span class="form-label">Interest method</span>
+            <div class="unit-toggle" role="group" aria-label="Interest calculation method">
+              <button type="button" class="unit-btn active" data-loan-type="french">Amortized</button>
+              <button type="button" class="unit-btn" data-loan-type="simple">Simple</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="loan-amount" class="form-label">Loan amount</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="loan-amount" class="form-input has-prefix" value="500" min="1" step="50" inputmode="decimal">
+          </div>
+          <input type="range" id="amount-slider" class="range-slider" min="100" max="50000" step="100" value="500" aria-label="Loan amount slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="interest-rate" class="form-label">Interest rate</label>
+            <div class="unit-toggle" role="group" aria-label="Interest rate period">
+              <button type="button" class="unit-btn active" data-rate-unit="annual">Annual</button>
+              <button type="button" class="unit-btn" data-rate-unit="monthly">Monthly</button>
+            </div>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="interest-rate" class="form-input has-suffix" value="10" min="0" max="100" step="0.25" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="rate-slider" class="range-slider" min="0.5" max="40" step="0.25" value="10" aria-label="Interest rate slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="loan-term" class="form-label">Loan term</label>
+            <div class="unit-toggle" role="group" aria-label="Loan term unit">
+              <button type="button" class="unit-btn active" data-term-unit="years">Years</button>
+              <button type="button" class="unit-btn" data-term-unit="months">Months</button>
+            </div>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="loan-term" class="form-input has-suffix" value="2" min="1" max="40" step="1" inputmode="numeric">
+            <span id="term-suffix" class="input-suffix">yrs</span>
+          </div>
+          <input type="range" id="term-slider" class="range-slider" min="1" max="30" step="1" value="2" aria-label="Loan term slider">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Estimated monthly payment</span>
+        <div id="result-monthly" class="result-main-value">$23.07</div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-principal" class="ratio-fill-primary" style="width: 90%;"></div>
+          <div id="bar-interest" class="ratio-fill-accent" style="width: 10%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Loan principal (Blue)</span>
+            <strong id="result-principal-display">$500.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Total interest paid (Green)</span>
+            <strong id="result-interest" style="color: var(--accent);">$53.74</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Total cost of loan</span>
+            <strong id="result-total">$553.74</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copy summary</button>
+          <button type="button" id="share-btn" class="btn btn-primary">Share link</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="schedule-details">
+      <summary id="schedule-summary-text" class="schedule-summary">View annual amortization schedule</summary>
+      <div class="export-bar">
+        <button type="button" id="export-excel-btn" class="btn-export">Export Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Export PDF (.pdf)</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Principal Paid</th>
+              <th>Interest Paid</th>
+              <th>Remaining Balance</th>
+            </tr>
+          </thead>
+          <tbody id="amortization-body"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Advertisement">
+      <span>Inline Advertisement</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>Amortized vs. Simple Interest Loans</h2>
+      <p>When comparing financing offers, knowing how interest is calculated can save you significant money:</p>
+      <ul>
+        <li><strong>Amortized (French / Reducing Balance):</strong> Used by banks for mortgages, auto loans, and standard personal loans. Interest is calculated each month solely on your remaining principal balance.</li>
+        <li><strong>Simple (Flat-Rate Interest):</strong> Common in short-term commercial or direct financing. Total interest is calculated upfront on the entire initial principal across all months and divided equally.</li>
+      </ul>
+
+      <h3>Formulas Used</h3>
+      <div class="formula-box">Amortized: M = P × [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]<br>Simple: M = [ P + (P × r × n) ] / n</div>
+      <p>Where <strong>P</strong> is the loan principal, <strong>r</strong> is the monthly interest rate, and <strong>n</strong> is the total number of monthly payments.</p>
+
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is the difference between amortized and simple interest loans?</summary>
+          <p>In an amortized loan (reducing balance), monthly interest is charged only on your remaining principal balance, lowering total interest paid. In a simple (flat-rate) loan, interest is calculated on the full original principal for the entire term, resulting in higher total interest.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How can I lower the total interest paid on a loan?</summary>
+          <p>Choosing a shorter loan term, opting for a reducing-balance amortized loan, or making extra principal-only payments significantly cuts total interest.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Related Financial Calculators</h2>
+      <div class="cards-grid">
+        <a href="compound-interest.html" class="calc-card">
+          <span class="calc-card-tag">Investing</span>
+          <h3>Compound Interest</h3>
+          <p>Project how your capital grows over time with monthly contributions and reinvested returns.</p>
+        </a>
+        <a href="savings-goal.html" class="calc-card">
+          <span class="calc-card-tag">Savings</span>
+          <h3>Savings Goal</h3>
+          <p>Find out how much you need to set aside every month to reach a financial target on schedule.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Free online calculation tools.</p>
+      <div class="footer-links">
+        <a href="../index.html">All calculators</a>
+        <a href="../../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/core.js"></script>
+  <script src="../../assets/js/export.js"></script>
+  <script src="../../assets/js/calculadoras/loan-calculator.js"></script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profit Margin & Selling Price Calculator — Numera</title>
+  <meta name="description" content="Calculate your exact product selling price from unit cost and desired margin. Save multiple products locally and export your price list to Excel or PDF.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/margen-ganancia.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/profit-margin.html">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Profit Margin & Selling Price Calculator — Numera",
+        "url": "https://numera.app/en/finance/profit-margin.html",
+        "description": "Calculate your exact product selling price from unit cost and target profit margin. Includes automatic markup conversion, tax, and Excel/PDF export.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why is sales tax added at the end?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sales tax or VAT is collected on behalf of tax authorities and is not part of your revenue or margin. Your net price must be set first to protect your profit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a healthy profit margin?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It varies by industry: retail typically ranges from 25% to 50%, while digital products and professional services often achieve 70% or higher due to low variable costs."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Language selector">
+        <a href="../../finanzas/margen-ganancia.html" class="lang-link" lang="es">ES</a>
+        <a href="profit-margin.html" class="lang-link active" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <span>Profit Margin</span>
+    </nav>
+
+    <h1 class="page-title">Profit Margin & Selling Price Calculator</h1>
+    <p class="page-subtitle">Set accurate selling prices, build a saved product catalog, and export to Excel or PDF.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Advertisement">
+      <span>Advertisement (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="unit-cost" class="form-label">Unit cost</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="unit-cost" class="form-input has-prefix" value="50" min="0" step="1" inputmode="decimal">
+          </div>
+          <input type="range" id="cost-slider" class="range-slider" min="1" max="2000" step="1" value="50" aria-label="Unit cost slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="target-margin" class="form-label">Target profit margin</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="target-margin" class="form-input has-suffix" value="30" min="0" max="99" step="1" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="margin-slider" class="range-slider" min="1" max="90" step="1" value="30" aria-label="Target margin slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="tax-rate" class="form-label">Sales tax / VAT (Optional)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="tax-rate" class="form-input has-suffix" value="8" min="0" max="100" step="0.5" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="tax-slider" class="range-slider" min="0" max="30" step="0.5" value="8" aria-label="Tax rate slider">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Final selling price (incl. tax)</span>
+        <div id="result-final-price" class="result-main-value">$77.14</div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-cost" class="ratio-fill-primary" style="width: 70%;"></div>
+          <div id="bar-profit" class="ratio-fill-accent" style="width: 30%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Net price (excl. tax)</span>
+            <strong id="result-net-price">$71.43</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Net profit per unit</span>
+            <strong id="result-profit" style="color: var(--accent);">$21.43</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Cost markup</span>
+            <strong id="result-markup">42.9%</strong>
+          </div>
+        </div>
+
+        <div class="save-item-bar">
+          <input type="text" id="product-name" class="form-input" placeholder="Product name (e.g. Cotton Shirt)">
+          <button type="button" id="save-item-btn" class="btn btn-primary">+ Save</button>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copy summary</button>
+          <button type="button" id="share-btn" class="btn">Share link</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="saved-catalog-section" class="schedule-details" style="display: none;">
+      <div class="schedule-summary" style="cursor: default;">
+        <span>Saved products (<span id="saved-count">0</span>)</span>
+      </div>
+      <div class="export-bar">
+        <button type="button" id="clear-catalog-btn" class="btn-export btn-danger-outline">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 6h18"/>
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+          </svg>
+          <span>Clear List</span>
+        </button>
+        <button type="button" id="export-excel-btn" class="btn-export">Export Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Export PDF (.pdf)</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Cost</th>
+              <th>Margin</th>
+              <th>Net Price</th>
+              <th>Tax</th>
+              <th>Final Price</th>
+              <th>Profit</th>
+              <th style="text-align: center;">Remove</th>
+            </tr>
+          </thead>
+          <tbody id="saved-items-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Advertisement">
+      <span>Inline Advertisement</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>Profit Margin vs. Markup Explained</h2>
+      <p>A common pricing mistake is confusing <strong>profit margin</strong> with <strong>markup</strong>:</p>
+      <ul>
+        <li><strong>Profit margin:</strong> The percentage of the <em>net selling price</em> that remains as profit.</li>
+        <li><strong>Markup:</strong> The percentage added on top of your <em>unit cost</em> to arrive at the selling price.</li>
+      </ul>
+
+      <h3>Formula Used</h3>
+      <div class="formula-box">Net Price = Cost / (1 - Margin %)<br>Final Price = Net Price × (1 + Tax %)</div>
+
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Why is sales tax added at the end?</summary>
+          <p>Sales tax or VAT is collected on behalf of tax authorities and is not part of your revenue or margin. Your net price must be set first to protect your profit.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is a healthy profit margin?</summary>
+          <p>It varies by industry: retail typically ranges from 25% to 50%, while digital products and professional services often achieve 70% or higher due to low variable costs.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Related Financial Calculators</h2>
+      <div class="cards-grid">
+        <a href="compound-interest.html" class="calc-card">
+          <span class="calc-card-tag">Investing</span>
+          <h3>Compound Interest</h3>
+          <p>Project how your capital grows over time with monthly contributions and reinvested returns.</p>
+        </a>
+        <a href="loan-calculator.html" class="calc-card">
+          <span class="calc-card-tag">Loans</span>
+          <h3>Loan Calculator</h3>
+          <p>Calculate your fixed monthly payment, total interest cost, and amortization schedule.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Free online calculation tools.</p>
+      <div class="footer-links">
+        <a href="../index.html">All calculators</a>
+        <a href="../../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/core.js"></script>
+  <script src="../../assets/js/export.js"></script>
+  <script src="../../assets/js/calculadoras/profit-margin.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Numera — Calculadoras Financieras y de Negocios Online</title>
+  <meta name="description" content="Calculadoras gratuitas, rápidas y precisas de interés compuesto, margen de ganancia y metas de ahorro. Resultados al instante sin registros.">
+  <link rel="alternate" hreflang="es" href="https://numera.app/">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/">
+  <link rel="alternate" hreflang="x-default" href="https://numera.app/">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#111827">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Selector de idioma">
+        <a href="index.html" class="lang-link active" lang="es">ES</a>
+        <a href="en/index.html" class="lang-link" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Cálculos precisos en segundos</h1>
+      <p>Calcula inversiones, préstamos y márgenes de ganancia en segundos. Obtén tablas detalladas y exporta tus reportes a <strong class="tag-excel">Excel</strong> o <strong class="tag-pdf">PDF</strong> gratis.</p>
+      <div class="search-box">
+        <input
+          type="search"
+          id="calc-search"
+          class="search-input"
+          placeholder="Buscar calculadora (ej. interés, margen, ahorro)..."
+          aria-label="Buscar calculadora"
+        >
+      </div>
+    </section>
+
+    <div class="ad-slot ad-slot--top" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario (728×90)</span>
+    </div>
+
+    <h2 class="section-heading">Finanzas y Negocios</h2>
+
+    <section class="cards-grid" id="calculators-grid">
+      <a href="finanzas/interes-compuesto.html" class="calc-card" data-keywords="inversion rendimiento capital ahorro futuro tasa anual">
+        <span class="calc-card-tag">Inversión</span>
+        <h3>Interés Compuesto</h3>
+        <p>Proyecta el crecimiento de tu capital a lo largo del tiempo con aportes mensuales y reinversión de intereses.</p>
+      </a>
+
+      <a href="finanzas/calculadora-prestamos.html" class="calc-card" data-keywords="credito cuota mensual hipoteca amortizacion deuda banco">
+        <span class="calc-card-tag">Créditos</span>
+        <h3>Préstamos y Cuotas</h3>
+        <p>Calcula la cuota mensual fija, los intereses totales y la tabla de amortización de cualquier préstamo.</p>
+      </a>
+
+      <a href="finanzas/margen-ganancia.html" class="calc-card" data-keywords="precio venta costo utilidad porcentaje comercio negocio markup">
+        <span class="calc-card-tag">Negocios</span>
+        <h3>Margen de Ganancia</h3>
+        <p>Calcula el precio de venta exacto y la utilidad neta a partir del costo de tu producto y el margen deseado.</p>
+      </a>
+
+      <a href="finanzas/plan-ahorro.html" class="calc-card" data-keywords="meta financiera cuota mensual objetivo fondo emergencia">
+        <span class="calc-card-tag">Ahorro</span>
+        <h3>Meta de Ahorro</h3>
+        <p>Descubre cuánto dinero debes apartar cada mes para alcanzar un objetivo financiero en el plazo que elijas.</p>
+      </a>
+    </section>
+
+    <p id="no-results" style="display: none; text-align: center; color: var(--text-secondary); margin-top: 2.4rem;">
+      No se encontraron calculadoras que coincidan con tu búsqueda.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Herramientas de cálculo gratuito.</p>
+      <div class="footer-links">
+        <a href="legal/privacidad.html">Privacidad</a>
+        <a href="en/index.html">English</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/search.js"></script>
+</body>
+</html>

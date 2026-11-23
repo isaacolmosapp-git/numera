@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Margen de Ganancia y Precio de Venta — Numera</title>
+  <meta name="description" content="Calcula el precio de venta exacto de tus productos a partir del costo y margen deseado. Guarda tu lista de precios y expórtala a Excel o PDF.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/margen-ganancia.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/profit-margin.html">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calculadora de Margen de Ganancia y Precio de Venta — Numera",
+        "url": "https://numera.app/finanzas/margen-ganancia.html",
+        "description": "Calcula el precio de venta exacto de un producto a partir de su costo y el margen de ganancia deseado. Incluye cálculo de markup, impuestos y exportación a Excel/PDF.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "inLanguage": "es",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Por qué el impuesto se aplica al final?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El IVA o impuesto sobre las ventas es un monto recaudado para el fisco, no forma parte de tu ingreso ni de tu margen comercial. Por eso primero se calcula el precio neto según tu margen objetivo y luego se suma el impuesto."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué margen de ganancia es recomendable?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende del sector: en comercio minorista (retail) suele oscilar entre 25 % y 50 %; en servicios profesionales o software digital puede superar el 70 % al tener costos variables bajos."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Selector de idioma">
+        <a href="margen-ganancia.html" class="lang-link active" lang="es">ES</a>
+        <a href="../en/finance/profit-margin.html" class="lang-link" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span>/</span>
+      <span>Margen de Ganancia</span>
+    </nav>
+
+    <h1 class="page-title">Calculadora de Margen de Ganancia</h1>
+    <p class="page-subtitle">Define el precio de venta ideal de tus productos, arma tu lista de precios y expórtala a Excel o PDF.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="unit-cost" class="form-label">Costo unitario del producto</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="unit-cost" class="form-input has-prefix" value="50" min="0" step="1" inputmode="decimal">
+          </div>
+          <input type="range" id="cost-slider" class="range-slider" min="1" max="2000" step="1" value="50" aria-label="Deslizador de costo unitario">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="target-margin" class="form-label">Margen de ganancia deseado</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="target-margin" class="form-input has-suffix" value="30" min="0" max="99" step="1" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="margin-slider" class="range-slider" min="1" max="90" step="1" value="30" aria-label="Deslizador de margen de ganancia">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="tax-rate" class="form-label">Impuesto / IVA (Opcional)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="tax-rate" class="form-input has-suffix" value="16" min="0" max="100" step="1" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="tax-slider" class="range-slider" min="0" max="30" step="1" value="16" aria-label="Deslizador de impuesto">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Precio de venta final (con impuesto)</span>
+        <div id="result-final-price" class="result-main-value">$82.86</div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-cost" class="ratio-fill-primary" style="width: 70%;"></div>
+          <div id="bar-profit" class="ratio-fill-accent" style="width: 30%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Precio neto (sin impuesto)</span>
+            <strong id="result-net-price">$71.43</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Ganancia neta por unidad</span>
+            <strong id="result-profit" style="color: var(--accent);">$21.43</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Markup sobre costo</span>
+            <strong id="result-markup">42.9%</strong>
+          </div>
+        </div>
+
+        <div class="save-item-bar">
+          <input type="text" id="product-name" class="form-input" placeholder="Nombre del producto (ej. Camisa L)">
+          <button type="button" id="save-item-btn" class="btn btn-primary">+ Guardar</button>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copiar resumen</button>
+          <button type="button" id="share-btn" class="btn">Compartir enlace</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="saved-catalog-section" class="schedule-details" style="display: none;">
+      <div class="schedule-summary" style="cursor: default;">
+        <span>Productos guardados (<span id="saved-count">0</span>)</span>
+      </div>
+      <div class="export-bar">
+        <button type="button" id="clear-catalog-btn" class="btn-export btn-danger-outline">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 6h18"/>
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+          </svg>
+          <span>Vaciar lista</span>
+        </button>
+        <button type="button" id="export-excel-btn" class="btn-export">Exportar Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Exportar PDF (.pdf)</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Costo</th>
+              <th>Margen</th>
+              <th>Precio Neto</th>
+              <th>Imp.</th>
+              <th>Precio Final</th>
+              <th>Ganancia</th>
+              <th style="text-align: center;">Quitar</th>
+            </tr>
+          </thead>
+          <tbody id="saved-items-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario Integrado</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>Diferencia entre Margen de Ganancia y Markup</h2>
+      <p>Uno de los errores más frecuentes al fijar precios es confundir el <strong>margen comercial</strong> con el <strong>markup (recargo sobre costo)</strong>:</p>
+      <ul>
+        <li><strong>Margen de ganancia:</strong> Es el porcentaje del <em>precio de venta final</em> que queda como utilidad neta.</li>
+        <li><strong>Markup:</strong> Es el porcentaje que se le suma al <em>costo de compra</em> para obtener el precio de venta.</li>
+      </ul>
+
+      <h3>Fórmula utilizada</h3>
+      <div class="formula-box">Precio Neto = Costo / (1 - Margen %)<br>Precio Final = Precio Neto × (1 + Impuesto %)</div>
+
+      <h3>Preguntas frecuentes</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Por qué el impuesto se aplica al final?</summary>
+          <p>El IVA o impuesto sobre las ventas es un monto recaudado para el fisco, no forma parte de tu ingreso ni de tu margen comercial. Por eso primero se calcula el precio neto según tu margen objetivo y luego se suma el impuesto.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué margen de ganancia es recomendable?</summary>
+          <p>Depende del sector: en comercio minorista (retail) suele oscilar entre 25 % y 50 %; en servicios profesionales o software digital puede superar el 70 % al tener costos variables bajos.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Otras calculadoras financieras</h2>
+      <div class="cards-grid">
+        <a href="interes-compuesto.html" class="calc-card">
+          <span class="calc-card-tag">Inversión</span>
+          <h3>Interés Compuesto</h3>
+          <p>Proyecta el crecimiento de tu capital a lo largo del tiempo con aportes mensuales.</p>
+        </a>
+        <a href="calculadora-prestamos.html" class="calc-card">
+          <span class="calc-card-tag">Créditos</span>
+          <h3>Préstamos y Cuotas</h3>
+          <p>Calcula la cuota mensual fija y la tabla de amortización de cualquier préstamo.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Herramientas de cálculo gratuito.</p>
+      <div class="footer-links">
+        <a href="../index.html">Todas las calculadoras</a>
+        <a href="../legal/privacidad.html">Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/export.js"></script>
+  <script src="../assets/js/calculadoras/profit-margin.js"></script>
+</body>
+</html>

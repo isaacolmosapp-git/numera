@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savings Goal Calculator — Monthly & Weekly Plan — Numera</title>
+  <meta name="description" content="Calculate how much money you need to save each month or week to hit your financial target on time, with optional APY interest.">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/plan-ahorro.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/savings-goal.html">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Savings Goal Calculator — Monthly & Weekly Plan — Numera",
+        "url": "https://numera.app/en/finance/savings-goal.html",
+        "description": "Calculate how much money you need to save each month or week to hit your financial target on time, with optional APY interest.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How large should an emergency fund be?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most financial planners recommend saving 3 to 6 months of essential living expenses in an easily accessible account."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if my savings account pays 0% interest?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Set the annual yield to 0% to get the exact linear monthly breakdown over your chosen timeframe."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Language selector">
+        <a href="../../finanzas/plan-ahorro.html" class="lang-link" lang="es">ES</a>
+        <a href="savings-goal.html" class="lang-link active" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <span>Savings Goal</span>
+    </nav>
+
+    <h1 class="page-title">Savings Goal Calculator</h1>
+    <p class="page-subtitle">Set your target amount and timeline to find out exactly how much to save each month.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Advertisement">
+      <span>Advertisement (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="target-goal" class="form-label">Savings target amount</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="target-goal" class="form-input has-prefix" value="5000" min="1" step="100" inputmode="decimal">
+          </div>
+          <input type="range" id="goal-slider" class="range-slider" min="500" max="100000" step="500" value="5000" aria-label="Savings target slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="current-savings" class="form-label">Starting savings balance</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="current-savings" class="form-input has-prefix" value="500" min="0" step="50" inputmode="decimal">
+          </div>
+          <input type="range" id="initial-slider" class="range-slider" min="0" max="50000" step="250" value="500" aria-label="Starting balance slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="months-period" class="form-label">Timeframe (months)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="months-period" class="form-input has-suffix" value="12" min="1" max="360" step="1" inputmode="numeric">
+            <span class="input-suffix">mos</span>
+          </div>
+          <input type="range" id="months-slider" class="range-slider" min="1" max="60" step="1" value="12" aria-label="Months slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="annual-yield" class="form-label">Annual yield / APY (optional)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="annual-yield" class="form-input has-suffix" value="4" min="0" max="50" step="0.5" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="rate-slider" class="range-slider" min="0" max="20" step="0.5" value="4" aria-label="Annual yield slider">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Required monthly deposit</span>
+        <div id="result-monthly" class="result-main-value">$366.74</div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-deposited" class="ratio-fill-primary" style="width: 98%;"></div>
+          <div id="bar-yield" class="ratio-fill-accent" style="width: 2%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Weekly equivalent</span>
+            <strong id="result-weekly">$84.63</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Total out-of-pocket deposits (Blue)</span>
+            <strong id="result-deposited">$4,900.88</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Interest earned toward goal (Green)</span>
+            <strong id="result-yield" style="color: var(--accent);">$99.12</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copy summary</button>
+          <button type="button" id="share-btn" class="btn btn-primary">Share link</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Advertisement">
+      <span>Inline Advertisement</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>How to Plan a Realistic Savings Goal</h2>
+      <p>Breaking a large financial milestone into fixed monthly or weekly transfers removes guesswork and lets you automate savings right on payday.</p>
+
+      <h3>Savings Deposit Formula</h3>
+      <div class="formula-box">Monthly Deposit = (Goal - Starting Balance) / Months</div>
+      <p>If your funds sit in a high-yield savings account, compound interest contributes toward your target and lowers the amount you need to deposit out of pocket.</p>
+
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>How large should an emergency fund be?</summary>
+          <p>Most financial planners recommend saving <strong>3 to 6 months</strong> of essential living expenses in an easily accessible account.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What if my savings account pays 0% interest?</summary>
+          <p>Set the annual yield to <strong>0%</strong> to get the exact linear monthly breakdown over your chosen timeframe.</p>
+        </details>
+      </div>
+    </article>
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Related Financial Calculators</h2>
+      <div class="cards-grid">
+        <a href="compound-interest.html" class="calc-card">
+          <span class="calc-card-tag">Investing</span>
+          <h3>Compound Interest</h3>
+          <p>Project how your capital grows over time with monthly contributions and reinvested returns.</p>
+        </a>
+        <a href="profit-margin.html" class="calc-card">
+          <span class="calc-card-tag">Business</span>
+          <h3>Profit Margin</h3>
+          <p>Calculate your exact selling price and net profit based on product cost and target margin.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Free online calculation tools.</p>
+      <div class="footer-links">
+        <a href="../index.html">All calculators</a>
+        <a href="../../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/core.js"></script>
+  <script src="../../assets/js/calculadoras/savings-goal.js"></script>
+</body>
+</html>
