@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Presupuesto Mensual 50/30/20 — Numera</title>
+  <meta name="description" content="Organiza tu sueldo con la regla de presupuesto 50/30/20 (necesidades, deseos y ahorro). Calcula montos mensuales, proyección anual y exporta tu plan a Excel y PDF.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/presupuesto-mensual.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/monthly-budget.html">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calculadora de Presupuesto Mensual 50/30/20 — Numera",
+        "url": "https://numera.app/finanzas/presupuesto-mensual.html",
+        "description": "Distribuye tus ingresos mensuales según la regla 50/30/20 o porcentajes personalizados y exporta tu plan financiero a Excel y PDF.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "inLanguage": "es",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿En qué consiste la regla de presupuesto 50/30/20?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Consiste en dividir tus ingresos netos mensuales en tres bloques: 50% para necesidades básicas (vivienda, comida, transporte), 30% para deseos o estilo de vida, y 20% para ahorro, fondo de emergencia o inversión."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué pasa si mis gastos fijos superan el 50% de mis ingresos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Puedes utilizar una distribución adaptada como 60/20/20 o 70/20/10 recortando temporalmente la categoría de deseos para proteger tu porcentaje de ahorro mensual."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Selector de idioma">
+        <a href="presupuesto-mensual.html" class="lang-link active" lang="es">ES</a>
+        <a href="../en/finance/monthly-budget.html" class="lang-link" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span>/</span>
+      <span>Presupuesto 50/30/20</span>
+    </nav>
+
+    <h1 class="page-title">Calculadora de Presupuesto Mensual 50/30/20</h1>
+    <p class="page-subtitle">Distribuye tus ingresos netos entre gastos esenciales, estilo de vida y ahorro de forma equilibrada.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="monthly-income" class="form-label">Ingreso mensual neto</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="monthly-income" class="form-input has-prefix" value="2000" min="0" step="50" inputmode="decimal">
+          </div>
+          <input type="range" id="income-slider" class="range-slider" min="100" max="25000" step="50" value="2000" aria-label="Deslizador de ingreso mensual">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="budget-preset" class="form-label">Regla de distribución</label>
+          </div>
+          <select id="budget-preset" class="form-input">
+            <option value="50-30-20" selected>50% / 30% / 20% (Estándar equilibrada)</option>
+            <option value="60-20-20">60% / 20% / 20% (Costo de vida alto)</option>
+            <option value="70-20-10">70% / 20% / 10% (Presupuesto ajustado)</option>
+            <option value="custom">Personalizado</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="needs-pct" class="form-label">Necesidades básicas (%)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="needs-pct" class="form-input has-suffix" value="50" min="0" max="100" step="1" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="needs-slider" class="range-slider" min="0" max="100" step="1" value="50" aria-label="Porcentaje de necesidades">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="wants-pct" class="form-label">Deseos y estilo de vida (%)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="wants-pct" class="form-input has-suffix" value="30" min="0" max="100" step="1" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="wants-slider" class="range-slider" min="0" max="100" step="1" value="30" aria-label="Porcentaje de deseos">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="savings-pct" class="form-label">Ahorro e inversión (%)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="savings-pct" class="form-input has-suffix" value="20" min="0" max="100" step="1" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="savings-slider" class="range-slider" min="0" max="100" step="1" value="20" aria-label="Porcentaje de ahorro">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Meta de ahorro mensual</span>
+        <div id="result-savings" class="result-main-value">$400.00</div>
+
+        <div id="pct-warning" style="display: none; padding: 1rem; margin-bottom: 1.4rem; border-radius: 0.6rem; background-color: rgba(248, 113, 113, 0.12); border: 0.1rem solid rgba(248, 113, 113, 0.4); color: #f87171; font-size: 1.35rem;"></div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-needs" class="ratio-fill-primary" style="width: 50%;"></div>
+          <div id="bar-wants" style="width: 30%; background-color: #f59e0b; height: 100%;"></div>
+          <div id="bar-savings" class="ratio-fill-accent" style="width: 20%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Necesidades básicas</span>
+            <strong id="result-needs">$1,000.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Deseos y ocio</span>
+            <strong id="result-wants" style="color: #f59e0b;">$600.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Ahorro acumulado en 1 año</span>
+            <strong id="result-annual-savings" style="color: var(--accent);">$4,800.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Ahorro acumulado en 5 años</span>
+            <strong id="result-five-year-savings">$24,000.00</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copiar resumen</button>
+          <button type="button" id="share-btn" class="btn">Compartir enlace</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="schedule-details">
+      <summary class="schedule-summary">Ver desglose mensual y anual por categoría</summary>
+      <div class="export-bar">
+        <button type="button" id="export-excel-btn" class="btn-export">Exportar Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Exportar PDF (.pdf)</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Categoría</th>
+              <th>Porcentaje</th>
+              <th>Mensual</th>
+              <th>Anual</th>
+            </tr>
+          </thead>
+          <tbody id="budget-schedule-body"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario Integrado</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>¿Cómo funciona el método de presupuesto 50/30/20?</h2>
+      <p>Popularizado por Elizabeth Warren, el método <strong>50/30/20</strong> simplifica la gestión de tus finanzas personales dividiendo tus ingresos después de impuestos en tres categorías claras sin necesidad de rastrear cada centavo:</p>
+      <ul>
+        <li><strong>50 % Necesidades:</strong> Todo aquello indispensable para vivir y trabajar (alquiler o hipoteca, servicios básicos, mercado, transporte, salud y pagos mínimos de deudas).</li>
+        <li><strong>30 % Deseos:</strong> Gastos que mejoran tu calidad de vida pero no son estrictamente necesarios (salidas a comer, entretenimiento, viajes, suscripciones de streaming).</li>
+        <li><strong>20 % Ahorro e Inversión:</strong> Construcción de tu fondo de emergencia (3 a 6 meses de gastos), inversiones a largo plazo y amortización acelerada de deudas.</li>
+      </ul>
+
+      <h3>Preguntas frecuentes</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿En qué consiste la regla de presupuesto 50/30/20?</summary>
+          <p>Consiste en dividir tus ingresos netos mensuales en tres bloques: 50% para necesidades básicas (vivienda, comida, transporte), 30% para deseos o estilo de vida, y 20% para ahorro, fondo de emergencia o inversión.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué pasa si mis gastos fijos superan el 50% de mis ingresos?</summary>
+          <p>Puedes utilizar una distribución adaptada como 60/20/20 o 70/20/10 recortando temporalmente la categoría de deseos para proteger tu porcentaje de ahorro mensual.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Siguientes pasos con tu ahorro</h2>
+      <div class="cards-grid">
+        <a href="plan-ahorro.html" class="calc-card">
+          <span class="calc-card-tag">Ahorro</span>
+          <h3>Plan de Ahorro</h3>
+          <p>Calcula cuánto tiempo te tomará alcanzar tu fondo de emergencia o una meta específica.</p>
+        </a>
+        <a href="interes-compuesto.html" class="calc-card">
+          <span class="calc-card-tag">Inversión</span>
+          <h3>Interés Compuesto</h3>
+          <p>Simula cuánto crecerá tu 20% mensual si lo inviertes de forma constante.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Herramientas de cálculo gratuito. <span class="version-badge">v1.3.0</span></p>
+      <div class="footer-links">
+        <a href="../index.html">Todas las calculadoras</a>
+        <a href="../legal/privacidad.html">Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/export.js"></script>
+  <script src="../assets/js/calculadoras/monthly-budget.js"></script>
+</body>
+</html>

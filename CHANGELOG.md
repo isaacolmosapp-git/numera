@@ -7,10 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Planned
-- **v1.3.0:** Monthly Budget 50/30/20 Calculator (`presupuesto-mensual.html` / `monthly-budget.html`)
 - **v1.4.0:** Discounts & Percentages Calculator (`calculadora-porcentajes.html` / `percentage-calculator.html`)
 - **v2.0.0:** Official public launch on custom domain (`numeratools.com`) + AdSense readiness
 - **v2.1.0:** Multi-Product Break-Even mode (weighted contribution margin by sales mix + `localStorage` catalog sync)
+
+---
+
+## [1.3.0] - 2026-11-24
+### Added
+- **50/30/20 Monthly Budget Calculator** (`finanzas/presupuesto-mensual.html` and `en/finance/monthly-budget.html` + `monthly-budget.js`) featuring preset distribution rules (`50/30/20`, `60/20/20`, `70/20/10`), custom percentage sliders with `100%` sum validation, and 1-year / 5-year cumulative savings projections.
+- Monthly vs. annual budget allocation breakdown table with **Excel (`.xlsx`)** and **PDF (`.pdf`)** export.
+- Bilingual `sitemap.xml` entries, Schema.org metadata, and homepage navigation cards.
+
+### Changed
+- Updated `NumeraCore.version` in `core.js` to `v1.3.0`.
 
 ---
 

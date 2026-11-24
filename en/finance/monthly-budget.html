@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>50/30/20 Monthly Budget Calculator — Numera</title>
+  <meta name="description" content="Organize your take-home pay with the 50/30/20 budget rule (needs, wants, and savings). Calculate monthly allocations, annual savings, and export to Excel and PDF.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/presupuesto-mensual.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/monthly-budget.html">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "50/30/20 Monthly Budget Calculator — Numera",
+        "url": "https://numera.app/en/finance/monthly-budget.html",
+        "description": "Allocate your monthly after-tax income using the 50/30/20 rule or custom percentages and export your budget plan to Excel and PDF.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the 50/30/20 budget rule work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The 50/30/20 rule divides your monthly after-tax income into three buckets: 50% for essential needs (housing, groceries, utilities), 30% for lifestyle wants, and 20% for savings, emergency funds, and investments."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if my essential bills exceed 50% of my income?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can switch to a 60/20/20 or 70/20/10 split by trimming discretionary wants temporarily so your monthly savings habit stays intact."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Language selector">
+        <a href="../../finanzas/presupuesto-mensual.html" class="lang-link" lang="es">ES</a>
+        <a href="monthly-budget.html" class="lang-link active" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <span>50/30/20 Budget</span>
+    </nav>
+
+    <h1 class="page-title">50/30/20 Monthly Budget Calculator</h1>
+    <p class="page-subtitle">Split your after-tax income across essential needs, lifestyle wants, and long-term savings.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Advertisement">
+      <span>Advertisement (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="monthly-income" class="form-label">Monthly after-tax income</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="monthly-income" class="form-input has-prefix" value="2000" min="0" step="50" inputmode="decimal">
+          </div>
+          <input type="range" id="income-slider" class="range-slider" min="100" max="25000" step="50" value="2000" aria-label="Monthly income slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="budget-preset" class="form-label">Budget split rule</label>
+          </div>
+          <select id="budget-preset" class="form-input">
+            <option value="50-30-20" selected>50% / 30% / 20% (Balanced standard)</option>
+            <option value="60-20-20">60% / 20% / 20% (High cost of living)</option>
+            <option value="70-20-10">70% / 20% / 10% (Tight budget)</option>
+            <option value="custom">Custom split</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="needs-pct" class="form-label">Essential needs (%)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="needs-pct" class="form-input has-suffix" value="50" min="0" max="100" step="1" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="needs-slider" class="range-slider" min="0" max="100" step="1" value="50" aria-label="Needs percentage slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="wants-pct" class="form-label">Lifestyle wants (%)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="wants-pct" class="form-input has-suffix" value="30" min="0" max="100" step="1" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="wants-slider" class="range-slider" min="0" max="100" step="1" value="30" aria-label="Wants percentage slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="savings-pct" class="form-label">Savings & investments (%)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="savings-pct" class="form-input has-suffix" value="20" min="0" max="100" step="1" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="savings-slider" class="range-slider" min="0" max="100" step="1" value="20" aria-label="Savings percentage slider">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Monthly savings target</span>
+        <div id="result-savings" class="result-main-value">$400.00</div>
+
+        <div id="pct-warning" style="display: none; padding: 1rem; margin-bottom: 1.4rem; border-radius: 0.6rem; background-color: rgba(248, 113, 113, 0.12); border: 0.1rem solid rgba(248, 113, 113, 0.4); color: #f87171; font-size: 1.35rem;"></div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-needs" class="ratio-fill-primary" style="width: 50%;"></div>
+          <div id="bar-wants" style="width: 30%; background-color: #f59e0b; height: 100%;"></div>
+          <div id="bar-savings" class="ratio-fill-accent" style="width: 20%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Essential needs</span>
+            <strong id="result-needs">$1,000.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Lifestyle wants</span>
+            <strong id="result-wants" style="color: #f59e0b;">$600.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>1-year cumulative savings</span>
+            <strong id="result-annual-savings" style="color: var(--accent);">$4,800.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>5-year cumulative savings</span>
+            <strong id="result-five-year-savings">$24,000.00</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copy summary</button>
+          <button type="button" id="share-btn" class="btn">Share link</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="schedule-details">
+      <summary class="schedule-summary">View monthly & annual category breakdown</summary>
+      <div class="export-bar">
+        <button type="button" id="export-excel-btn" class="btn-export">Export Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Export PDF (.pdf)</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Allocation</th>
+              <th>Monthly</th>
+              <th>Annual</th>
+            </tr>
+          </thead>
+          <tbody id="budget-schedule-body"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Advertisement">
+      <span>Inline Advertisement</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>How the 50/30/20 Budget Rule Works</h2>
+      <p>Popularized by Elizabeth Warren, the <strong>50/30/20 framework</strong> keeps personal budgeting simple by dividing your after-tax paycheck into three clear buckets without tracking every single receipt:</p>
+      <ul>
+        <li><strong>50% Needs:</strong> Must-have expenses required for living and working (rent or mortgage, utilities, groceries, transportation, healthcare, and minimum debt payments).</li>
+        <li><strong>30% Wants:</strong> Discretionary spending that enhances your lifestyle (dining out, entertainment, vacations, hobbies, and streaming subscriptions).</li>
+        <li><strong>20% Savings & Investments:</strong> Building an emergency fund (3–6 months of expenses), retirement or index fund contributions, and extra debt payoff.</li>
+      </ul>
+
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>How does the 50/30/20 budget rule work?</summary>
+          <p>The 50/30/20 rule divides your monthly after-tax income into three buckets: 50% for essential needs (housing, groceries, utilities), 30% for lifestyle wants, and 20% for savings, emergency funds, and investments.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What if my essential bills exceed 50% of my income?</summary>
+          <p>You can switch to a 60/20/20 or 70/20/10 split by trimming discretionary wants temporarily so your monthly savings habit stays intact.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Put Your Savings to Work</h2>
+      <div class="cards-grid">
+        <a href="savings-goal.html" class="calc-card">
+          <span class="calc-card-tag">Savings</span>
+          <h3>Savings Goal</h3>
+          <p>Calculate how long it will take to build your emergency fund or reach a target.</p>
+        </a>
+        <a href="compound-interest.html" class="calc-card">
+          <span class="calc-card-tag">Investing</span>
+          <h3>Compound Interest</h3>
+          <p>Simulate how your monthly 20% contribution grows when invested consistently.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Free online calculation tools. <span class="version-badge">v1.3.0</span></p>
+      <div class="footer-links">
+        <a href="../index.html">All calculators</a>
+        <a href="../../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/core.js"></script>
+  <script src="../../assets/js/export.js"></script>
+  <script src="../../assets/js/calculadoras/monthly-budget.js"></script>
+</body>
+</html>
