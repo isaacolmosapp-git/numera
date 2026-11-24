@@ -1,5 +1,5 @@
 :root {
-  font-size: 62.5%; /* 1rem = 10px */
+  font-size: 62.5%; 
   --bg-body: #090d16;
   --bg-surface: #111827;
   --bg-surface-alt: #1a2333;
@@ -109,7 +109,7 @@ a {
   color: var(--bg-body);
 }
 
-/* Espacios Publicitarios No Invasivos (CLS-safe) */
+/* Espacios Publicitarios  */
 .ad-slot {
   width: 100%;
   margin: 2rem auto;
@@ -826,4 +826,18 @@ main {
 
 .footer-links a:hover {
   color: var(--accent);
+}
+
+/* Etiqueta de versión en el footer */
+.version-badge {
+  display: inline-block;
+  margin-left: 0.8rem;
+  padding: 0.2rem 0.7rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--bg-surface);
+  border: 0.1rem solid var(--border-subtle);
+  border-radius: 0.4rem;
+  vertical-align: middle;
 }
