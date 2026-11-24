@@ -7,11 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Planned
-- **v1.4.0:** Discounts & Percentages Calculator (`calculadora-porcentajes.html` / `percentage-calculator.html`)
 - **v2.0.0:** Official public launch on custom domain (`numeratools.com`) + AdSense readiness
 - **v2.1.0:** Multi-Product Break-Even mode (weighted contribution margin by sales mix + `localStorage` catalog sync)
 
 ---
+
+## [1.4.0] - 2026-11-24
+### Added
+- **Percentage & Discount Calculator** (`finanzas/calculadora-porcentajes.html` and `en/finance/percentage-calculator.html` + `percentage-calculator.js`) supporting three calculation modes: Discount & Sales Tax/VAT, Percentage of a Value (`X% of Y`), and Percentage Change (`From X to Y`).
+- Persistent `localStorage` calculation history list with **Excel (`.xlsx`)** and **PDF (`.pdf`)** batch export.
+- Bilingual `sitemap.xml` entries, Schema.org metadata, and homepage navigation cards.
+
+### Changed
+- Updated `NumeraCore.version` in `core.js` to `v1.4.0`.
+
+--
 
 ## [1.3.0] - 2026-11-24
 ### Added

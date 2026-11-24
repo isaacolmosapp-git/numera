@@ -37,6 +37,16 @@ window.NumeraExport = (function () {
     }
   }
 
+  function sanitizeForPDF(text) {
+    return String(text ?? '')
+      .replace(/→/g, '->')
+      .replace(/←/g, '<-')
+      .replace(/—/g, '-')
+      .replace(/–/g, '-')
+      .replace(/[“”]/g, '"')
+      .replace(/[‘’]/g, "'");
+  }
+
   /**
    * Exporta un reporte completo a Excel (.xlsx) con pestañas de Resumen y Tabla
    */
@@ -108,6 +118,13 @@ window.NumeraExport = (function () {
       const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
       const dateStr = new Date().toLocaleDateString(lang === 'en' ? 'en-US' : 'es-ES');
 
+      // Limpiar caracteres Unicode incompatibles con fuentes estándar de jsPDF
+      const cleanTitle = sanitizeForPDF(title);
+      const cleanSubtitle = sanitizeForPDF(subtitle);
+      const cleanSummary = (summaryRows || []).map((row) => row.map(sanitizeForPDF));
+      const cleanHeaders = (tableHeaders || []).map(sanitizeForPDF);
+      const cleanRows = (tableRows || []).map((row) => row.map(sanitizeForPDF));
+
       // Encabezado oscuro estilo Numera
       doc.setFillColor(17, 24, 39); // #111827
       doc.rect(0, 0, 210, 32, 'F');
@@ -130,15 +147,15 @@ window.NumeraExport = (function () {
       doc.setTextColor(248, 250, 252);
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(15);
-      doc.text(title, 14, 24);
+      doc.text(cleanTitle, 14, 24);
 
       let currentY = 40;
 
-      if (subtitle) {
+      if (cleanSubtitle) {
         doc.setTextColor(71, 85, 105);
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(10);
-        doc.text(subtitle, 14, currentY);
+        doc.text(cleanSubtitle, 14, currentY);
         currentY += 6;
       }
 
@@ -146,7 +163,7 @@ window.NumeraExport = (function () {
       doc.autoTable({
         startY: currentY,
         head: [[lang === 'en' ? 'Concept' : 'Concepto', lang === 'en' ? 'Value' : 'Valor']],
-        body: summaryRows,
+        body: cleanSummary,
         theme: 'grid',
         headStyles: {
           fillColor: [30, 41, 59],
@@ -171,7 +188,7 @@ window.NumeraExport = (function () {
       currentY = doc.lastAutoTable.finalY + 10;
 
       // Tabla de Desglose (si existe)
-      if (tableHeaders && tableHeaders.length && tableRows && tableRows.length) {
+      if (cleanHeaders.length && cleanRows.length) {
         doc.setTextColor(15, 23, 42);
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(11);
@@ -179,8 +196,8 @@ window.NumeraExport = (function () {
 
         doc.autoTable({
           startY: currentY + 4,
-          head: [tableHeaders],
-          body: tableRows,
+          head: [cleanHeaders],
+          body: cleanRows,
           theme: 'striped',
           headStyles: {
             fillColor: [16, 185, 129],
@@ -209,7 +226,7 @@ window.NumeraExport = (function () {
         doc.setFontSize(8);
         doc.setTextColor(148, 163, 184);
         doc.text(
-          `numera.app — ${lang === 'en' ? 'Page' : 'Página'} ${i} / ${pageCount}`,
+          `numera.app - ${lang === 'en' ? 'Page' : 'Página'} ${i} / ${pageCount}`,
           105,
           290,
           { align: 'center' }

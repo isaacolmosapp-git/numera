@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Porcentajes, Descuentos e IVA — Numera</title>
+  <meta name="description" content="Calcula descuentos con impuestos o IVA, porcentajes de una cantidad y variaciones porcentuales de aumento o rebaja. Guarda tu lista y exporta a Excel y PDF.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/calculadora-porcentajes.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/percentage-calculator.html">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calculadora de Porcentajes y Descuentos — Numera",
+        "url": "https://numera.app/finanzas/calculadora-porcentajes.html",
+        "description": "Calcula descuentos comerciales, impuestos (IVA), porcentajes de cualquier monto y variaciones porcentuales con exportación a Excel y PDF.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "inLanguage": "es",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cómo calcular el precio final con descuento e IVA?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Primero se resta el porcentaje de descuento al precio original para obtener el subtotal rebajado, y luego se aplica el porcentaje de impuesto (IVA) sobre ese subtotal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo se calcula la variación porcentual entre dos valores?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Se resta el valor inicial al valor final, se divide ese resultado entre el valor inicial y se multiplica por 100. Un resultado positivo indica aumento y uno negativo indica disminución."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Selector de idioma">
+        <a href="calculadora-porcentajes.html" class="lang-link active" lang="es">ES</a>
+        <a href="../en/finance/percentage-calculator.html" class="lang-link" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span>/</span>
+      <span>Porcentajes y Descuentos</span>
+    </nav>
+
+    <h1 class="page-title">Calculadora de Porcentajes y Descuentos</h1>
+    <p class="page-subtitle">Calcula rebajas con impuestos, porcentajes directos o variaciones de precio en segundos.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="calc-mode" class="form-label">Tipo de cálculo</label>
+          </div>
+          <select id="calc-mode" class="form-input">
+            <option value="discount" selected>Descuento e Impuesto / IVA</option>
+            <option value="percent-of">Porcentaje de una cantidad (X% de Y)</option>
+            <option value="variation">Variación porcentual (De X a Y)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="input-a" id="label-a" class="form-label">Precio original</label>
+          </div>
+          <div class="input-wrapper">
+            <span id="prefix-a" class="input-prefix">$</span>
+            <input type="number" id="input-a" class="form-input has-prefix" value="120" step="1" inputmode="decimal">
+          </div>
+          <input type="range" id="slider-a" class="range-slider" min="0" max="10000" step="5" value="120" aria-label="Deslizador primer valor">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="input-b" id="label-b" class="form-label">Porcentaje de descuento (%)</label>
+          </div>
+          <div class="input-wrapper">
+            <span id="prefix-b" class="input-prefix" style="display: none;">$</span>
+            <input type="number" id="input-b" class="form-input has-suffix" value="25" step="1" inputmode="decimal">
+            <span id="suffix-b" class="input-suffix">%</span>
+          </div>
+          <input type="range" id="slider-b" class="range-slider" min="0" max="100" step="1" value="25" aria-label="Deslizador segundo valor">
+        </div>
+
+        <div class="form-group" id="tax-group">
+          <div class="label-row">
+            <label for="input-tax" class="form-label">Impuesto / IVA adicional (Opcional)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="input-tax" class="form-input has-suffix" value="0" min="0" max="100" step="0.5" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="slider-tax" class="range-slider" min="0" max="50" step="0.5" value="0" aria-label="Deslizador de impuesto">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span id="result-main-label" class="result-main-label">Precio final a pagar</span>
+        <div id="result-main-value" class="result-main-value">$90.00</div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-primary" class="ratio-fill-primary" style="width: 75%;"></div>
+          <div id="bar-accent" class="ratio-fill-accent" style="width: 25%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span id="row1-label">Ahorro por descuento (25%)</span>
+            <strong id="row1-value" style="color: var(--accent);">-$30.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span id="row2-label">Subtotal con descuento</span>
+            <strong id="row2-value">$90.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span id="row3-label">Impuesto / IVA (0%)</span>
+            <strong id="row3-value">+$0.00</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons" style="flex-wrap: wrap;">
+          <button type="button" id="add-history-btn" class="btn" style="background-color: var(--accent); color: #0b1120; border-color: var(--accent);">Guardar en lista</button>
+          <button type="button" id="copy-btn" class="btn">Copiar resumen</button>
+          <button type="button" id="share-btn" class="btn">Compartir enlace</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="schedule-details" open>
+      <summary class="schedule-summary">Historial de cálculos guardados y exportación</summary>
+      <div class="export-bar">
+        <button type="button" id="export-excel-btn" class="btn-export">Exportar Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Exportar PDF (.pdf)</button>
+        <button type="button" id="clear-history-btn" class="btn-export">Limpiar lista</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Modo</th>
+              <th>Parámetros</th>
+              <th>Resultado</th>
+              <th>Detalle</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="history-table-body"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario Integrado</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>Guía rápida para calcular porcentajes y descuentos</h2>
+      <p>Tanto al comprar en oferta como al fijar precios comerciales o analizar variaciones de ventas, dominar tres operaciones básicas de porcentaje evita errores de cálculo:</p>
+      <ul>
+        <li><strong>Aplicar un descuento:</strong> Multiplica el precio original por <code>(1 - % Descuento / 100)</code>. Por ejemplo, un 25 % de descuento equivale a multiplicar el precio por <code>0.75</code>.</li>
+        <li><strong>Calcular un porcentaje directo:</strong> Multiplica la cantidad base por el porcentaje deseado y divide entre 100.</li>
+        <li><strong>Variación porcentual:</strong> Mide cuánto subió o bajó una cifra respecto a su valor inicial mediante <code>[(Final - Inicial) / Inicial] × 100</code>.</li>
+      </ul>
+
+      <h3>Preguntas frecuentes</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Cómo calcular el precio final con descuento e IVA?</summary>
+          <p>Primero se resta el porcentaje de descuento al precio original para obtener el subtotal rebajado, y luego se aplica el porcentaje de impuesto (IVA) sobre ese subtotal.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo se calcula la variación porcentual entre dos valores?</summary>
+          <p>Se resta el valor inicial al valor final, se divide ese resultado entre el valor inicial y se multiplica por 100. Un resultado positivo indica aumento y uno negativo indica disminución.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Herramientas relacionadas</h2>
+      <div class="cards-grid">
+        <a href="margen-ganancia.html" class="calc-card">
+          <span class="calc-card-tag">Negocios</span>
+          <h3>Margen de Ganancia</h3>
+          <p>Calcula el precio de venta ideal y tu ganancia neta a partir del costo unitario.</p>
+        </a>
+        <a href="presupuesto-mensual.html" class="calc-card">
+          <span class="calc-card-tag">Finanzas Personales</span>
+          <h3>Presupuesto 50/30/20</h3>
+          <p>Distribuye tus ingresos mensuales entre necesidades, deseos y ahorro.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Herramientas de cálculo gratuito. <span class="version-badge">v1.4.0</span></p>
+      <div class="footer-links">
+        <a href="../index.html">Todas las calculadoras</a>
+        <a href="../legal/privacidad.html">Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/export.js"></script>
+  <script src="../assets/js/calculadoras/percentage-calculator.js"></script>
+</body>
+</html>

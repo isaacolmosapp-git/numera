@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage, Discount & Sales Tax Calculator — Numera</title>
+  <meta name="description" content="Calculate sale discounts with optional tax/VAT, percentage of any number, and percentage increase or decrease. Save your list and export to Excel and PDF.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/calculadora-porcentajes.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/percentage-calculator.html">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Percentage & Discount Calculator — Numera",
+        "url": "https://numera.app/en/finance/percentage-calculator.html",
+        "description": "Calculate retail discounts with sales tax, percentage of a value, and percentage increase or decrease with Excel and PDF export.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do you calculate final price with discount and sales tax?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "First subtract the discount percentage from the original price to get the discounted subtotal, then apply the sales tax percentage to that subtotal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you calculate percentage change between two values?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Subtract the initial value from the final value, divide the difference by the initial value, and multiply by 100. A positive number shows an increase while a negative number indicates a decrease."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Language selector">
+        <a href="../../finanzas/calculadora-porcentajes.html" class="lang-link" lang="es">ES</a>
+        <a href="percentage-calculator.html" class="lang-link active" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <span>Percentages & Discounts</span>
+    </nav>
+
+    <h1 class="page-title">Percentage & Discount Calculator</h1>
+    <p class="page-subtitle">Calculate sale discounts with tax, quick percentages, or percentage increases and drops.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Advertisement">
+      <span>Advertisement (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="calc-mode" class="form-label">Calculation mode</label>
+          </div>
+          <select id="calc-mode" class="form-input">
+            <option value="discount" selected>Discount & Sales Tax / VAT</option>
+            <option value="percent-of">Percentage of a number (X% of Y)</option>
+            <option value="variation">Percentage change (From X to Y)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="input-a" id="label-a" class="form-label">Original price</label>
+          </div>
+          <div class="input-wrapper">
+            <span id="prefix-a" class="input-prefix">$</span>
+            <input type="number" id="input-a" class="form-input has-prefix" value="120" step="1" inputmode="decimal">
+          </div>
+          <input type="range" id="slider-a" class="range-slider" min="0" max="10000" step="5" value="120" aria-label="First value slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="input-b" id="label-b" class="form-label">Discount percentage (%)</label>
+          </div>
+          <div class="input-wrapper">
+            <span id="prefix-b" class="input-prefix" style="display: none;">$</span>
+            <input type="number" id="input-b" class="form-input has-suffix" value="25" step="1" inputmode="decimal">
+            <span id="suffix-b" class="input-suffix">%</span>
+          </div>
+          <input type="range" id="slider-b" class="range-slider" min="0" max="100" step="1" value="25" aria-label="Second value slider">
+        </div>
+
+        <div class="form-group" id="tax-group">
+          <div class="label-row">
+            <label for="input-tax" class="form-label">Additional Sales Tax / VAT (Optional)</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="number" id="input-tax" class="form-input has-suffix" value="0" min="0" max="100" step="0.5" inputmode="decimal">
+            <span class="input-suffix">%</span>
+          </div>
+          <input type="range" id="slider-tax" class="range-slider" min="0" max="50" step="0.5" value="0" aria-label="Tax slider">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span id="result-main-label" class="result-main-label">Final price to pay</span>
+        <div id="result-main-value" class="result-main-value">$90.00</div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-primary" class="ratio-fill-primary" style="width: 75%;"></div>
+          <div id="bar-accent" class="ratio-fill-accent" style="width: 25%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span id="row1-label">Discount saved (25%)</span>
+            <strong id="row1-value" style="color: var(--accent);">-$30.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span id="row2-label">Subtotal after discount</span>
+            <strong id="row2-value">$90.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span id="row3-label">Tax / VAT (0%)</span>
+            <strong id="row3-value">+$0.00</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons" style="flex-wrap: wrap;">
+          <button type="button" id="add-history-btn" class="btn" style="background-color: var(--accent); color: #0b1120; border-color: var(--accent);">Save to list</button>
+          <button type="button" id="copy-btn" class="btn">Copy summary</button>
+          <button type="button" id="share-btn" class="btn">Share link</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="schedule-details" open>
+      <summary class="schedule-summary">Saved calculation history & export</summary>
+      <div class="export-bar">
+        <button type="button" id="export-excel-btn" class="btn-export">Export Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Export PDF (.pdf)</button>
+        <button type="button" id="clear-history-btn" class="btn-export">Clear list</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Mode</th>
+              <th>Parameters</th>
+              <th>Result</th>
+              <th>Detail</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="history-table-body"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Advertisement">
+      <span>Inline Advertisement</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>Quick Guide to Percentages and Discounts</h2>
+      <p>Whether you are shopping during a sale, pricing merchandise, or tracking sales growth, three core percentage formulas handle everyday math accurately:</p>
+      <ul>
+        <li><strong>Applying a discount:</strong> Multiply the original price by <code>(1 - Discount % / 100)</code>. For example, a 25% discount means multiplying the price by <code>0.75</code>.</li>
+        <li><strong>Finding a percentage of a value:</strong> Multiply the base amount by the percentage and divide by 100.</li>
+        <li><strong>Percentage change:</strong> Measure growth or decline using <code>[(Final - Initial) / Initial] × 100</code>.</li>
+      </ul>
+
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>How do you calculate final price with discount and sales tax?</summary>
+          <p>First subtract the discount percentage from the original price to get the discounted subtotal, then apply the sales tax percentage to that subtotal.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do you calculate percentage change between two values?</summary>
+          <p>Subtract the initial value from the final value, divide the difference by the initial value, and multiply by 100. A positive number shows an increase while a negative number indicates a decrease.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Related Calculators</h2>
+      <div class="cards-grid">
+        <a href="profit-margin.html" class="calc-card">
+          <span class="calc-card-tag">Business</span>
+          <h3>Profit Margin</h3>
+          <p>Calculate optimal selling prices and net profit margins from unit cost.</p>
+        </a>
+        <a href="monthly-budget.html" class="calc-card">
+          <span class="calc-card-tag">Personal Finance</span>
+          <h3>50/30/20 Budget</h3>
+          <p>Split your monthly paycheck across essential needs, lifestyle wants, and savings.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Free online calculation tools. <span class="version-badge">v1.4.0</span></p>
+      <div class="footer-links">
+        <a href="../index.html">All calculators</a>
+        <a href="../../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/core.js"></script>
+  <script src="../../assets/js/export.js"></script>
+  <script src="../../assets/js/calculadoras/percentage-calculator.js"></script>
+</body>
+</html>
