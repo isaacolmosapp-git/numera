@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Break-Even Point Calculator for Business — Numera</title>
+  <meta name="description" content="Calculate how many units and how much revenue you need to cover fixed and variable costs and start making a profit. Export scenarios to Excel and PDF.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/punto-equilibrio.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/break-even.html">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Break-Even Point Calculator — Numera",
+        "url": "https://numera.app/en/finance/break-even.html",
+        "description": "Calculate how many units you need to sell to cover fixed and variable costs, analyze contribution margin, and export scenarios to Excel and PDF.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is a business break-even point?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The break-even point is the exact sales volume (in units or dollars) where total revenue equals total costs (fixed plus variable). Every unit sold beyond this threshold generates net profit."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is unit contribution margin?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Unit contribution margin is the selling price per unit minus the variable cost per unit. It shows how much money each sale contributes toward covering your fixed overhead."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Language selector">
+        <a href="../../finanzas/punto-equilibrio.html" class="lang-link" lang="es">ES</a>
+        <a href="break-even.html" class="lang-link active" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <span>Break-Even Point</span>
+    </nav>
+
+    <h1 class="page-title">Break-Even Point Calculator</h1>
+    <p class="page-subtitle">Find out exactly how many units you need to sell to cover all your costs and turn a profit.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Advertisement">
+      <span>Advertisement (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="fixed-costs" class="form-label">Monthly fixed costs</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="fixed-costs" class="form-input has-prefix" value="2500" min="0" step="50" inputmode="decimal">
+          </div>
+          <input type="range" id="fixed-slider" class="range-slider" min="0" max="50000" step="100" value="2500" aria-label="Fixed costs slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="unit-price" class="form-label">Selling price per unit</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="unit-price" class="form-input has-prefix" value="50" min="0" step="1" inputmode="decimal">
+          </div>
+          <input type="range" id="price-slider" class="range-slider" min="1" max="1000" step="1" value="50" aria-label="Unit price slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="variable-cost" class="form-label">Variable cost per unit</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="variable-cost" class="form-input has-prefix" value="25" min="0" step="1" inputmode="decimal">
+          </div>
+          <input type="range" id="variable-slider" class="range-slider" min="0" max="1000" step="1" value="25" aria-label="Variable cost slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="target-profit" class="form-label">Target monthly profit (Optional)</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="target-profit" class="form-input has-prefix" value="0" min="0" step="50" inputmode="decimal">
+          </div>
+          <input type="range" id="profit-slider" class="range-slider" min="0" max="25000" step="100" value="0" aria-label="Target profit slider">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Minimum sales volume required</span>
+        <div id="result-units" class="result-main-value">100 units</div>
+
+        <div id="breakeven-warning" style="display: none; padding: 1rem; margin-bottom: 1.4rem; border-radius: 0.6rem; background-color: rgba(248, 113, 113, 0.12); border: 0.1rem solid rgba(248, 113, 113, 0.4); color: #f87171; font-size: 1.35rem;">
+          Selling price per unit must exceed variable cost per unit to reach break-even.
+        </div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-variable" class="ratio-fill-primary" style="width: 50%;"></div>
+          <div id="bar-contrib" class="ratio-fill-accent" style="width: 50%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Required break-even revenue</span>
+            <strong id="result-revenue">$5,000.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Unit contribution margin</span>
+            <strong id="result-contrib-margin" style="color: var(--accent);">$25.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Contribution margin ratio</span>
+            <strong id="result-contrib-ratio">50.0%</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copy summary</button>
+          <button type="button" id="share-btn" class="btn">Share link</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="schedule-details">
+      <summary class="schedule-summary">View sales volume & profit scenarios</summary>
+      <div class="export-bar">
+        <button type="button" id="export-excel-btn" class="btn-export">Export Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Export PDF (.pdf)</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Volume Level</th>
+              <th>Units Sold</th>
+              <th>Total Revenue</th>
+              <th>Total Costs</th>
+              <th>Net Profit / Loss</th>
+            </tr>
+          </thead>
+          <tbody id="breakeven-schedule-body"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Advertisement">
+      <span>Inline Advertisement</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>How to Calculate Your Business Break-Even Point</h2>
+      <p>The <strong>break-even point</strong> tells you the exact sales volume your business needs to cover all expenses without losing money. Knowing this number is essential before launching a new product, adjusting prices, or taking on fixed overhead.</p>
+      <ul>
+        <li><strong>Fixed costs:</strong> Expenses that stay constant regardless of sales volume (rent, salaries, insurance, software subscriptions).</li>
+        <li><strong>Variable costs:</strong> Direct costs incurred for every unit produced or sold (inventory, raw materials, packaging, payment processing fees).</li>
+      </ul>
+
+      <h3>Formula Used</h3>
+      <div class="formula-box">Break-Even Units = Fixed Costs / (Unit Selling Price - Unit Variable Cost)<br>Break-Even Revenue = Break-Even Units × Unit Selling Price</div>
+
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is a business break-even point?</summary>
+          <p>The break-even point is the exact sales volume (in units or dollars) where total revenue equals total costs (fixed plus variable). Every unit sold beyond this threshold generates net profit.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is unit contribution margin?</summary>
+          <p>Unit contribution margin is the selling price per unit minus the variable cost per unit. It shows how much money each sale contributes toward covering your fixed overhead.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Related Business Calculators</h2>
+      <div class="cards-grid">
+        <a href="profit-margin.html" class="calc-card">
+          <span class="calc-card-tag">Business</span>
+          <h3>Profit Margin</h3>
+          <p>Set accurate selling prices, build a product catalog, and export to Excel or PDF.</p>
+        </a>
+        <a href="loan-calculator.html" class="calc-card">
+          <span class="calc-card-tag">Loans</span>
+          <h3>Loan Calculator</h3>
+          <p>Calculate monthly payments and amortization schedules for business financing.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Free online calculation tools. <span class="version-badge">v1.1.0</span></p>
+      <div class="footer-links">
+        <a href="../index.html">All calculators</a>
+        <a href="../../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/core.js"></script>
+  <script src="../../assets/js/export.js"></script>
+  <script src="../../assets/js/calculadoras/break-even.js"></script>
+</body>
+</html>

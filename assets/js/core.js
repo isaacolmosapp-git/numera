@@ -1,4 +1,5 @@
 const NumeraCore = (() => {
+  const version = 'v1.1.0';
   const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
   const locale = lang === 'en' ? 'en-US' : 'es-ES';
 
@@ -114,6 +115,7 @@ const NumeraCore = (() => {
   }
 
   return {
+    version,
     lang,
     formatCurrency,
     formatNumber,
@@ -123,3 +125,9 @@ const NumeraCore = (() => {
     setupShareAndCopy
   };
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.version-badge').forEach((el) => {
+    el.textContent = NumeraCore.version;
+  });
+});

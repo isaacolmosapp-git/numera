@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Punto de Equilibrio para Negocios — Numera</title>
+  <meta name="description" content="Calcula cuántas unidades y cuánto dinero necesitas vender para cubrir tus costos fijos y comenzar a generar ganancias. Exporta escenarios a Excel y PDF.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/punto-equilibrio.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/break-even.html">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calculadora de Punto de Equilibrio — Numera",
+        "url": "https://numera.app/finanzas/punto-equilibrio.html",
+        "description": "Calcula cuántas unidades necesitas vender para cubrir costos fijos y variables, conocer tu margen de contribución y exportar escenarios a Excel y PDF.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "inLanguage": "es",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué es el punto de equilibrio de un negocio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Es el nivel exacto de ventas (en unidades o dinero) en el que los ingresos totales igualan a los costos totales (fijos más variables). A partir de ese punto, cada unidad adicional vendida genera utilidad neta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué es el margen de contribución unitario?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Es la diferencia entre el precio de venta de una unidad y su costo variable unitario. Representa cuánto dinero aporta cada venta para cubrir los costos fijos del negocio."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Selector de idioma">
+        <a href="punto-equilibrio.html" class="lang-link active" lang="es">ES</a>
+        <a href="../en/finance/break-even.html" class="lang-link" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span>/</span>
+      <span>Punto de Equilibrio</span>
+    </nav>
+
+    <h1 class="page-title">Calculadora de Punto de Equilibrio</h1>
+    <p class="page-subtitle">Descubre cuántas unidades necesitas vender para cubrir todos tus costos y empezar a ganar dinero.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="fixed-costs" class="form-label">Costos fijos mensuales</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="fixed-costs" class="form-input has-prefix" value="2500" min="0" step="50" inputmode="decimal">
+          </div>
+          <input type="range" id="fixed-slider" class="range-slider" min="0" max="50000" step="100" value="2500" aria-label="Deslizador de costos fijos">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="unit-price" class="form-label">Precio de venta por unidad</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="unit-price" class="form-input has-prefix" value="50" min="0" step="1" inputmode="decimal">
+          </div>
+          <input type="range" id="price-slider" class="range-slider" min="1" max="1000" step="1" value="50" aria-label="Deslizador de precio unitario">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="variable-cost" class="form-label">Costo variable por unidad</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="variable-cost" class="form-input has-prefix" value="25" min="0" step="1" inputmode="decimal">
+          </div>
+          <input type="range" id="variable-slider" class="range-slider" min="0" max="1000" step="1" value="25" aria-label="Deslizador de costo variable">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="target-profit" class="form-label">Meta de ganancia mensual (Opcional)</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="target-profit" class="form-input has-prefix" value="0" min="0" step="50" inputmode="decimal">
+          </div>
+          <input type="range" id="profit-slider" class="range-slider" min="0" max="25000" step="100" value="0" aria-label="Deslizador de meta de ganancia">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Volumen mínimo de ventas</span>
+        <div id="result-units" class="result-main-value">100 unidades</div>
+
+        <div id="breakeven-warning" style="display: none; padding: 1rem; margin-bottom: 1.4rem; border-radius: 0.6rem; background-color: rgba(248, 113, 113, 0.12); border: 0.1rem solid rgba(248, 113, 113, 0.4); color: #f87171; font-size: 1.35rem;">
+          El precio de venta debe ser mayor que el costo variable por unidad para alcanzar el equilibrio.
+        </div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-variable" class="ratio-fill-primary" style="width: 50%;"></div>
+          <div id="bar-contrib" class="ratio-fill-accent" style="width: 50%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Facturación / Ventas necesarias</span>
+            <strong id="result-revenue">$5,000.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Margen de contribución unitario</span>
+            <strong id="result-contrib-margin" style="color: var(--accent);">$25.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Ratio de margen de contribución</span>
+            <strong id="result-contrib-ratio">50.0%</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copiar resumen</button>
+          <button type="button" id="share-btn" class="btn">Compartir enlace</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="schedule-details">
+      <summary class="schedule-summary">Ver tabla de escenarios de ventas y utilidad</summary>
+      <div class="export-bar">
+        <button type="button" id="export-excel-btn" class="btn-export">Exportar Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Exportar PDF (.pdf)</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Nivel de Volumen</th>
+              <th>Unidades</th>
+              <th>Ingresos Totales</th>
+              <th>Costos Totales</th>
+              <th>Utilidad / Pérdida</th>
+            </tr>
+          </thead>
+          <tbody id="breakeven-schedule-body"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Espacio publicitario">
+      <span>Espacio Publicitario Integrado</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>¿Cómo calcular el Punto de Equilibrio de un negocio?</h2>
+      <p>El <strong>punto de equilibrio (Break-Even Point)</strong> indica el volumen exacto de ventas que tu empresa necesita para no ganar ni perder dinero. Conocer esta cifra es indispensable antes de lanzar un producto, ajustar precios o asumir nuevos gastos fijos como alquiler o personal.</p>
+      <ul>
+        <li><strong>Costos fijos:</strong> Gastos que pagas todos los meses sin importar cuánto vendas (arriendo, sueldos administrativos, internet, software).</li>
+        <li><strong>Costos variables:</strong> Costos directamente ligados a cada unidad vendida (materia prima, mercancía, comisiones de pasarela de pago, empaque).</li>
+      </ul>
+
+      <h3>Fórmula utilizada</h3>
+      <div class="formula-box">Punto de Equilibrio (Unidades) = Costos Fijos / (Precio Unitario - Costo Variable Unitario)<br>Punto de Equilibrio ($) = Unidades de Equilibrio × Precio Unitario</div>
+
+      <h3>Preguntas frecuentes</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Qué es el punto de equilibrio de un negocio?</summary>
+          <p>Es el nivel exacto de ventas (en unidades o dinero) en el que los ingresos totales igualan a los costos totales (fijos más variables). A partir de ese punto, cada unidad adicional vendida genera utilidad neta.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué es el margen de contribución unitario?</summary>
+          <p>Es la diferencia entre el precio de venta de una unidad y su costo variable unitario. Representa cuánto dinero aporta cada venta para cubrir los costos fijos del negocio.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Otras calculadoras para negocios</h2>
+      <div class="cards-grid">
+        <a href="margen-ganancia.html" class="calc-card">
+          <span class="calc-card-tag">Negocios</span>
+          <h3>Margen de Ganancia</h3>
+          <p>Define el precio de venta exacto de tus productos y exporta tu lista de precios.</p>
+        </a>
+        <a href="calculadora-prestamos.html" class="calc-card">
+          <span class="calc-card-tag">Créditos</span>
+          <h3>Préstamos y Cuotas</h3>
+          <p>Calcula la cuota mensual y la tabla de amortización para financiar tu negocio.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Herramientas de cálculo gratuito. <span class="version-badge">v1.1.0</span></p>
+      <div class="footer-links">
+        <a href="../index.html">Todas las calculadoras</a>
+        <a href="../legal/privacidad.html">Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/export.js"></script>
+  <script src="../assets/js/calculadoras/break-even.js"></script>
+</body>
+</html>
