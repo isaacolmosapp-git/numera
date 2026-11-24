@@ -1,5 +1,5 @@
 const NumeraCore = (() => {
-  const version = 'v1.3.0';
+  const version = 'v1.4.0';
   const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
   const locale = lang === 'en' ? 'en-US' : 'es-ES';
 
