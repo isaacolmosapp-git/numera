@@ -7,11 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Planned
-- **v1.2.0:** Investment ROI & CAGR Calculator (`calculadora-roi.html` / `roi-calculator.html`)
 - **v1.3.0:** Monthly Budget 50/30/20 Calculator (`presupuesto-mensual.html` / `monthly-budget.html`)
 - **v1.4.0:** Discounts & Percentages Calculator (`calculadora-porcentajes.html` / `percentage-calculator.html`)
 - **v2.0.0:** Official public launch on custom domain (`numeratools.com`) + AdSense readiness
 - **v2.1.0:** Multi-Product Break-Even mode (weighted contribution margin by sales mix + `localStorage` catalog sync)
+
+---
+
+## [1.2.0] - 2026-11-24
+### Added
+- **Investment ROI & CAGR Calculator** (`finanzas/calculadora-roi.html` and `en/finance/roi-calculator.html` + `roi-calculator.js`) calculating total ROI percentage, net profit/loss, capital multiplier, and annualized return (CAGR) across flexible year/month timeframes, including optional additional costs and fees.
+- Annualized growth projection schedule based on the calculated CAGR with direct **Excel (`.xlsx`)** and **PDF (`.pdf`)** report export.
+- Bilingual `sitemap.xml` entries, Schema.org metadata, and homepage navigation cards for the ROI & CAGR calculator.
+
+### Changed
+- Updated `NumeraCore.version` in `core.js` to `v1.2.0`.
 
 ---
 

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment ROI & CAGR Calculator — Numera</title>
+  <meta name="description" content="Calculate Return on Investment (ROI), net profit, capital multiplier, and Compound Annual Growth Rate (CAGR) for any investment. Export reports to Excel and PDF.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numera.app/finanzas/calculadora-roi.html">
+  <link rel="alternate" hreflang="en" href="https://numera.app/en/finance/roi-calculator.html">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Investment ROI & CAGR Calculator — Numera",
+        "url": "https://numera.app/en/finance/roi-calculator.html",
+        "description": "Calculate Return on Investment (ROI), net profit, capital multiplier, and Compound Annual Growth Rate (CAGR) with Excel and PDF export.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Return on Investment (ROI)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ROI measures the total percentage gain or loss relative to your total capital invested. It is calculated by dividing net profit by total investment cost and multiplying by 100."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between ROI and CAGR?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ROI reflects total cumulative return regardless of timeframe, whereas CAGR (Compound Annual Growth Rate) measures the smoothed annualized return, allowing you to compare investments of different durations."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Language selector">
+        <a href="../../finanzas/calculadora-roi.html" class="lang-link" lang="es">ES</a>
+        <a href="roi-calculator.html" class="lang-link active" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <span>ROI Calculator</span>
+    </nav>
+
+    <h1 class="page-title">Investment ROI & CAGR Calculator</h1>
+    <p class="page-subtitle">Measure total return, net profit, and annualized growth rate for any investment or business project.</p>
+
+    <div class="ad-slot ad-slot--top" aria-label="Advertisement">
+      <span>Advertisement (728×90)</span>
+    </div>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="initial-investment" class="form-label">Initial investment</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="initial-investment" class="form-input has-prefix" value="5000" min="0" step="100" inputmode="decimal">
+          </div>
+          <input type="range" id="initial-slider" class="range-slider" min="100" max="250000" step="100" value="5000" aria-label="Initial investment slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="final-value" class="form-label">Final return value</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="final-value" class="form-input has-prefix" value="7500" min="0" step="100" inputmode="decimal">
+          </div>
+          <input type="range" id="final-slider" class="range-slider" min="0" max="500000" step="100" value="7500" aria-label="Final return slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="extra-costs" class="form-label">Additional costs / Fees (Optional)</label>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-prefix">$</span>
+            <input type="number" id="extra-costs" class="form-input has-prefix" value="0" min="0" step="25" inputmode="decimal">
+          </div>
+          <input type="range" id="costs-slider" class="range-slider" min="0" max="50000" step="50" value="0" aria-label="Additional costs slider">
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="investment-duration" class="form-label">Investment timeframe</label>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <input type="number" id="investment-duration" class="form-input" value="3" min="0.1" max="100" step="0.5" inputmode="decimal">
+            <select id="duration-unit" class="form-input" aria-label="Time unit">
+              <option value="years" selected>Years</option>
+              <option value="months">Months</option>
+            </select>
+          </div>
+          <input type="range" id="duration-slider" class="range-slider" min="1" max="30" step="1" value="3" aria-label="Duration slider">
+        </div>
+      </div>
+
+      <div class="result-panel">
+        <span class="result-main-label">Total Return on Investment (ROI)</span>
+        <div id="result-roi" class="result-main-value">+50.00%</div>
+
+        <div class="ratio-bar" aria-hidden="true">
+          <div id="bar-principal" class="ratio-fill-primary" style="width: 66.7%;"></div>
+          <div id="bar-gain" class="ratio-fill-accent" style="width: 33.3%;"></div>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Net profit / loss</span>
+            <strong id="result-net-profit" style="color: var(--accent);">+$2,500.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Annualized return (CAGR)</span>
+            <strong id="result-cagr">+14.47%</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Total capital invested</span>
+            <strong id="result-total-invested">$5,000.00</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Capital multiplier</span>
+            <strong id="result-multiplier">1.50x</strong>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" id="copy-btn" class="btn">Copy summary</button>
+          <button type="button" id="share-btn" class="btn">Share link</button>
+        </div>
+      </div>
+    </section>
+
+    <details class="schedule-details">
+      <summary class="schedule-summary">View periodic equivalent growth schedule</summary>
+      <div class="export-bar">
+        <button type="button" id="export-excel-btn" class="btn-export">Export Excel (.xlsx)</button>
+        <button type="button" id="export-pdf-btn" class="btn-export">Export PDF (.pdf)</button>
+      </div>
+      <div class="table-scroll">
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Total Invested</th>
+              <th>Cumulative Gain / Loss</th>
+              <th>Projected Value</th>
+            </tr>
+          </thead>
+          <tbody id="roi-schedule-body"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="ad-slot ad-slot--inline" aria-label="Advertisement">
+      <span>Inline Advertisement</span>
+    </div>
+
+    <article class="seo-content">
+      <h2>How to Evaluate Investment ROI and CAGR</h2>
+      <p>Measuring the true performance of an investment, marketing campaign, or business venture requires looking at both total cumulative gains and how long it took to achieve them:</p>
+      <ul>
+        <li><strong>ROI (Return on Investment):</strong> Shows your total percentage return relative to all capital invested (including fees, maintenance, or closing costs).</li>
+        <li><strong>CAGR (Compound Annual Growth Rate):</strong> Converts your total return into a steady annual growth rate, letting you fairly compare an 8-month deal against a 4-year investment.</li>
+      </ul>
+
+      <h3>Formulas Used</h3>
+      <div class="formula-box">ROI (%) = [(Final Value - Total Invested) / Total Invested] × 100<br>CAGR (%) = [(Final Value / Total Invested)^(1 / Years) - 1] × 100</div>
+
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is Return on Investment (ROI)?</summary>
+          <p>ROI measures the total percentage gain or loss relative to your total capital invested. It is calculated by dividing net profit by total investment cost and multiplying by 100.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is the difference between ROI and CAGR?</summary>
+          <p>ROI reflects total cumulative return regardless of timeframe, whereas CAGR (Compound Annual Growth Rate) measures the smoothed annualized return, allowing you to compare investments of different durations.</p>
+        </details>
+      </div>
+    </article>
+
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading" class="section-heading">Related Investment Tools</h2>
+      <div class="cards-grid">
+        <a href="compound-interest.html" class="calc-card">
+          <span class="calc-card-tag">Investing</span>
+          <h3>Compound Interest</h3>
+          <p>Project future capital growth with recurring contributions and compounding.</p>
+        </a>
+        <a href="break-even.html" class="calc-card">
+          <span class="calc-card-tag">Business</span>
+          <h3>Break-Even Point</h3>
+          <p>Find out how many units you need to sell to recover fixed and variable costs.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Free online calculation tools. <span class="version-badge">v1.2.0</span></p>
+      <div class="footer-links">
+        <a href="../index.html">All calculators</a>
+        <a href="../../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/core.js"></script>
+  <script src="../../assets/js/export.js"></script>
+  <script src="../../assets/js/calculadoras/roi-calculator.js"></script>
+</body>
+</html>
