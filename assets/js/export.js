@@ -226,7 +226,7 @@ window.NumeraExport = (function () {
         doc.setFontSize(8);
         doc.setTextColor(148, 163, 184);
         doc.text(
-          `numera.app - ${lang === 'en' ? 'Page' : 'Página'} ${i} / ${pageCount}`,
+          `numeratools.com - ${lang === 'en' ? 'Page' : 'Página'} ${i} / ${pageCount}`,
           105,
           290,
           { align: 'center' }

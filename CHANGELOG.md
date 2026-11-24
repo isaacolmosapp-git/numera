@@ -7,8 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Planned
-- **v2.0.0:** Official public launch on custom domain (`numeratools.com`) + AdSense readiness
 - **v2.1.0:** Multi-Product Break-Even mode (weighted contribution margin by sales mix + `localStorage` catalog sync)
+
+---
+
+## [2.0.0] - 2026-11-24
+### Added
+- Bilingual **Contact & Feedback** pages (`legal/contacto.html` and `legal/contact.html`) integrated with Web3Forms and direct email support (`contact@numeratools.com`).
+- Added Privacy Policy and Contact pages to `sitemap.xml` and global site footers.
+
+### Changed
+- Migrated all canonical URLs, `hreflang` tags, Schema.org metadata, `sitemap.xml`, `robots.txt`, and PDF export footers to `https://numeratools.com`.
+- Bumped `NumeraCore.version` to `v2.0.0`.
 
 ---
 

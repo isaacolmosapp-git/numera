@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto y Sugerencias — Numera</title>
+  <meta name="description" content="Ponte en contacto con el equipo de Numera para enviar sugerencias de nuevas calculadoras, reportar errores o realizar consultas técnicas.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="alternate" hreflang="es" href="https://numeratools.com/legal/contacto.html">
+  <link rel="alternate" hreflang="en" href="https://numeratools.com/legal/contact.html">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contacto — Numera",
+    "url": "https://numeratools.com/legal/contacto.html",
+    "description": "Canal oficial de contacto, soporte y sugerencias para las calculadoras financieras de Numera.",
+    "inLanguage": "es"
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Numera</span>
+      </a>
+      <nav class="lang-switch" aria-label="Selector de idioma">
+        <a href="contacto.html" class="lang-link active" lang="es">ES</a>
+        <a href="contact.html" class="lang-link" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span>/</span>
+      <span>Contacto</span>
+    </nav>
+
+    <h1 class="page-title">Contacto y Sugerencias</h1>
+    <p class="page-subtitle">¿Tienes una idea para una nueva calculadora o detectaste algún detalle en los cálculos? Escríbenos.</p>
+
+    <section class="calc-workspace">
+      <div class="panel">
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="0b174e17-644a-4324-b23b-00c55508e03a">
+          <input type="hidden" name="subject" value="Nuevo mensaje desde Numera (ES)">
+          <input type="hidden" name="from_name" value="Numera Web">
+          <input type="checkbox" name="botcheck" style="display: none;">
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="contact-name" class="form-label">Nombre</label>
+            </div>
+            <input type="text" id="contact-name" name="name" class="form-input" placeholder="Tu nombre" required>
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="contact-email" class="form-label">Correo electrónico</label>
+            </div>
+            <input type="email" id="contact-email" name="email" class="form-input" placeholder="tu@correo.com" required>
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="contact-topic" class="form-label">Motivo del mensaje</label>
+            </div>
+            <select id="contact-topic" name="topic" class="form-input">
+              <option value="Sugerencia de calculadora">Sugerencia de nueva calculadora</option>
+              <option value="Reporte de error">Reportar un error o fórmula</option>
+              <option value="Consulta general">Consulta general / Colaboración</option>
+              <option value="Privacidad">Privacidad y términos</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="contact-message" class="form-label">Mensaje</label>
+            </div>
+            <textarea id="contact-message" name="message" class="form-input" rows="5" placeholder="Describe tu sugerencia o consulta..." required style="resize: vertical; font-family: inherit;"></textarea>
+          </div>
+
+          <button type="submit" id="submit-contact-btn" class="btn" style="width: 100%; background-color: var(--accent); color: #0b1120; border-color: var(--accent);">
+            Enviar mensaje
+          </button>
+
+          <p id="form-feedback" role="status" aria-live="polite" style="margin-top: 1.2rem; font-size: 1.4rem; display: none;"></p>
+        </form>
+      </div>
+
+      <div class="result-panel" style="justify-content: flex-start; gap: 2rem;">
+        <div>
+          <span class="result-main-label">Correo electrónico directo</span>
+          <div style="font-size: 2rem; font-weight: 700; color: var(--accent); margin-top: 0.4rem; word-break: break-all;">
+            <a href="mailto:contact@numeratools.com" style="color: inherit; text-decoration: none;">contact@numeratools.com</a>
+          </div>
+          <p style="color: var(--text-secondary); font-size: 1.4rem; margin-top: 0.6rem;">
+            Si prefieres escribir desde tu cliente de correo habitual, envíanos un mensaje directamente a esta dirección.
+          </p>
+        </div>
+
+        <div class="result-breakdown">
+          <div class="breakdown-row">
+            <span>Tiempo estimado de respuesta</span>
+            <strong>24 – 48 horas hábiles</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Idiomas de atención</span>
+            <strong>Español / Inglés</strong>
+          </div>
+          <div class="breakdown-row">
+            <span>Privacidad de datos</span>
+            <strong>No compartimos tu correo</strong>
+          </div>
+        </div>
+
+        <div style="background-color: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 0.8rem; padding: 1.4rem;">
+          <strong style="display: block; color: var(--text-primary); margin-bottom: 0.4rem; font-size: 1.4rem;">Nota sobre asesoría financiera</strong>
+          <p style="color: var(--text-secondary); font-size: 1.3rem; margin: 0;">
+            Las herramientas de Numera tienen fines exclusivamente educativos e informativos y no sustituyen el asesoramiento financiero, contable o fiscal profesional.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Numera. Herramientas de cálculo gratuito. <span class="version-badge">v2.0.0</span></p>
+      <div class="footer-links">
+        <a href="../index.html">Todas las calculadoras</a>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/core.js"></script>
+  <script src="../assets/js/contact.js"></script>
+</body>
+</html>
