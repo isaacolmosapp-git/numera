@@ -8,6 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Planned
 - **v2.2.0:** Multi-Product Break-Even mode (weighted contribution margin by sales mix + `localStorage` catalog sync)
+- **v2.3.0:** Interactive visual charts for calculator results (lazy-loaded Chart.js or lightweight native SVG for compound growth, loan amortization curves, break-even intersection, and 50/30/20 budget breakdown)
+- **v2.4.0:** Embeddable calculator widget mode (`?embed=true` clean UI layout + one-click `<iframe>` snippet generator with brand attribution backlink for third-party websites and blogs)
+
+---
+
+## [2.1.1] - 2026-11-25
+
+### Added
+- High-resolution PNG multi-platform icons (`apple-touch-icon.png` 180×180, `icon-192.png`, and `icon-512.png`) generated from `favicon.svg`.
+- `<link rel="apple-touch-icon">` tags across HTML views for clean iOS/iPadOS home screen shortcuts.
+
+### Changed
+- Updated `manifest.json` to declare PNG icons (`any maskable`) alongside `favicon.svg` for full Android PWA and mobile search engine compatibility.
 
 ---
 
