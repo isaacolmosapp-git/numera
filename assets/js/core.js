@@ -1,5 +1,24 @@
+// Redirección automática a inglés en la raíz (/) para navegadores no hispanohablantes
+(function autoDetectLanguage() {
+  const path = window.location.pathname;
+  const isRoot = path === '/' || path === '/index.html';
+  if (!isRoot) return;
+
+  // Respetar si el usuario eligió español manualmente en esta sesión
+  try {
+    if (sessionStorage.getItem('numera_manual_lang') === 'es') return;
+  } catch {
+    // Ignorar si sessionStorage está restringido
+  }
+
+  const userLang = (navigator.language || navigator.userLanguage || 'es').toLowerCase();
+  if (!userLang.startsWith('es')) {
+    window.location.replace('/en/index.html' + window.location.search);
+  }
+})();
+
 const NumeraCore = (() => {
-  const version = 'v2.0.1';
+  const version = 'v2.0.2';
   const lang = document.documentElement.lang === 'en' ? 'en' : 'es';
   const locale = lang === 'en' ? 'en-US' : 'es-ES';
 
@@ -129,5 +148,18 @@ const NumeraCore = (() => {
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.version-badge').forEach((el) => {
     el.textContent = NumeraCore.version;
+  });
+
+  // Guardar preferencia manual si el usuario pulsa ES o EN en la cabecera
+  document.querySelectorAll('.lang-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      const chosen = link.getAttribute('lang');
+      if (!chosen) return;
+      try {
+        sessionStorage.setItem('numera_manual_lang', chosen);
+      } catch {
+        // Ignorar si sessionStorage está restringido
+      }
+    });
   });
 });
