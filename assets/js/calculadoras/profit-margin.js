@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (items.length === 0) {
-      savedSection.style.display = 'none';
+      savedSection.style.display = 'block';
       return;
     }
 

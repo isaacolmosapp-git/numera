@@ -524,12 +524,12 @@ main {
   background-color: var(--bg-surface-alt);
 }
 
-.schedule-summary::after {
+/* .schedule-summary::after {
   content: '+';
   font-size: 2rem;
   font-weight: 700;
   color: var(--accent);
-}
+} */
 
 .schedule-details[open] .schedule-summary::after {
   content: '−';
