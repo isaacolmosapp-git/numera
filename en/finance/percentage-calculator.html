@@ -34,18 +34,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How do you calculate final price with discount and sales tax?",
+            "name": "How do you calculate the final price with both a discount and sales tax?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "First subtract the discount percentage from the original price to get the discounted subtotal, then apply the sales tax percentage to that subtotal."
+              "text": "First subtract the discount percentage from the original price to get the discounted subtotal, and then apply the sales tax or VAT percentage to that reduced subtotal."
             }
           },
           {
             "@type": "Question",
-            "name": "How do you calculate percentage change between two values?",
+            "name": "How is percentage change calculated between two values?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Subtract the initial value from the final value, divide the difference by the initial value, and multiply by 100. A positive number shows an increase while a negative number indicates a decrease."
+              "text": "Subtract the starting value from the final value, divide that difference by the starting value, and multiply by 100. A positive number indicates an increase, while a negative number indicates a decrease."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you extract the pre-tax price from a tax-inclusive total?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Divide the total price by (1 + tax rate in decimal form). For example, if an item costs $116 including 16% tax, divide 116 by 1.16 to get the pre-tax price of $100."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is a 20% discount plus an extra 10% off the same as a 30% discount?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Stacked discounts apply sequentially to the remaining balance: 20% off leaves 80%, and taking 10% off that 80% removes another 8%, resulting in a combined discount of 28%."
             }
           }
         ]
@@ -190,23 +206,41 @@
     </div>
 
     <article class="seo-content">
-      <h2>Quick Guide to Percentages and Discounts</h2>
-      <p>Whether you are shopping during a sale, pricing merchandise, or tracking sales growth, three core percentage formulas handle everyday math accurately:</p>
+      <h2>Quick Guide to Calculating Percentages, Discounts, and Sales Tax</h2>
+      <p>Whether you are shopping retail sales, invoicing with sales tax or VAT, or measuring price and revenue shifts, mastering the three core percentage operations prevents costly math mistakes. You can also save every calculation to your local history list and export the entire table to Excel or PDF:</p>
       <ul>
-        <li><strong>Applying a discount:</strong> Multiply the original price by <code>(1 - Discount % / 100)</code>. For example, a 25% discount means multiplying the price by <code>0.75</code>.</li>
-        <li><strong>Finding a percentage of a value:</strong> Multiply the base amount by the percentage and divide by 100.</li>
-        <li><strong>Percentage change:</strong> Measure growth or decline using <code>[(Final - Initial) / Initial] × 100</code>.</li>
+        <li><strong>Applying a retail discount:</strong> Multiply the original price by <code>(1 - Discount % / 100)</code>. For instance, a 25% discount means multiplying the list price by <code>0.75</code>. When sales tax applies, it is calculated on the discounted subtotal.</li>
+        <li><strong>Finding a direct percentage (X% of Y):</strong> Multiply the base amount by the target percentage and divide by 100. Useful for sales commissions, tips, withholdings, or standalone taxes.</li>
+        <li><strong>Percentage change (From X to Y):</strong> Measure how much a metric grew or dropped relative to its starting value using <code>[(Final - Initial) / Initial] × 100</code>.</li>
       </ul>
+
+      <h3>Practical Example: $120 Item With 25% Off + 16% Sales Tax</h3>
+      <p>Suppose a product is listed at <strong>$120.00</strong> with a <strong>25% discount</strong> and an additional <strong>16% sales tax / VAT</strong>:</p>
+      <ul>
+        <li><strong>1. Discount savings:</strong> $120.00 × 25% = <strong>-$30.00</strong>.</li>
+        <li><strong>2. Discounted subtotal:</strong> $120.00 - $30.00 = <strong>$90.00</strong>.</li>
+        <li><strong>3. Sales tax / VAT (16%):</strong> $90.00 × 16% = <strong>+$14.40</strong>.</li>
+        <li><strong>4. Final price to pay:</strong> $90.00 + $14.40 = <strong>$104.40</strong>.</li>
+      </ul>
+      <p>If you run a business and want to set profitable retail prices before running promotional discounts, use our <a href="profit-margin.html">Profit Margin Calculator</a>, or track how purchases fit into your spending plan with the <a href="monthly-budget.html">50/30/20 Monthly Budget Calculator</a>.</p>
 
       <h3>Frequently Asked Questions</h3>
       <div class="faq-list">
         <details class="faq-item">
-          <summary>How do you calculate final price with discount and sales tax?</summary>
-          <p>First subtract the discount percentage from the original price to get the discounted subtotal, then apply the sales tax percentage to that subtotal.</p>
+          <summary>How do you calculate the final price with both a discount and sales tax?</summary>
+          <p>First subtract the discount percentage from the original price to get the discounted subtotal, and then apply the sales tax or VAT percentage to that reduced subtotal.</p>
         </details>
         <details class="faq-item">
-          <summary>How do you calculate percentage change between two values?</summary>
-          <p>Subtract the initial value from the final value, divide the difference by the initial value, and multiply by 100. A positive number shows an increase while a negative number indicates a decrease.</p>
+          <summary>How is percentage change calculated between two values?</summary>
+          <p>Subtract the starting value from the final value, divide that difference by the starting value, and multiply by 100. A positive number indicates an increase, while a negative number indicates a decrease.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do you extract the pre-tax price from a tax-inclusive total?</summary>
+          <p>Divide the total price by (1 + tax rate in decimal form). For example, if an item costs $116 including 16% tax, divide 116 by 1.16 to get the pre-tax price of $100.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is a 20% discount plus an extra 10% off the same as a 30% discount?</summary>
+          <p>No. Stacked discounts apply sequentially to the remaining balance: 20% off leaves 80%, and taking 10% off that 80% removes another 8%, resulting in a combined discount of 28%.</p>
         </details>
       </div>
     </article>

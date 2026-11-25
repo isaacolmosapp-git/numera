@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Planned
-- **v2.1.0:** Multi-Product Break-Even mode (weighted contribution margin by sales mix + `localStorage` catalog sync)
+- **v2.2.0:** Multi-Product Break-Even mode (weighted contribution margin by sales mix + `localStorage` catalog sync)
+
+---
+
+## [2.1.0] - 2026-11-25
+
+### Added
+- Expanded editorial guides, step-by-step worked examples, and contextual internal linking across all 16 bilingual calculator views (ES/EN).
+- Added extended FAQ sections and synchronized `FAQPage` Schema.org JSON-LD structured data across all calculators to enhance organic search visibility and AdSense readiness.
 
 ---
 

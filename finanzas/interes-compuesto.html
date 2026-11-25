@@ -34,10 +34,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "¿Qué influye más: la tasa o el tiempo?",
+            "name": "¿Qué influye más en el interés compuesto: la tasa o el tiempo?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "En plazos largos (más de 10 o 15 años), el tiempo suele tener un impacto mayor que una pequeña diferencia en la tasa, porque la curva exponencial acelera en los últimos años."
+              "text": "En plazos largos (más de 10 o 15 años), el tiempo suele tener un impacto mayor que una pequeña diferencia en la tasa, porque la curva exponencial acelera en los últimos años gracias a la reinversión acumulada."
             }
           },
           {
@@ -45,7 +45,23 @@
             "name": "¿Puedo compartir una simulación específica?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sí. Pulsa el botón Compartir enlace para copiar una URL que guarda exactamente los montos, tasa y años que configuraste."
+              "text": "Sí. Pulsa el botón Compartir enlace para copiar una URL que guarda exactamente los montos, la tasa anual y los años que configuraste."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo funciona la Regla del 72 en el interés compuesto?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La Regla del 72 estima cuántos años tardará en duplicarse una inversión sin aportes adicionales: divide 72 entre la tasa de interés anual. Por ejemplo, al 8% anual tu capital se duplica aproximadamente cada 9 años (72 / 8 = 9)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Por qué conviene empezar a invertir aunque el aporte mensual sea bajo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Porque cada aporte mensual temprano tiene más años para capitalizarse y generar intereses sobre intereses. Postergar 5 años el inicio obliga a realizar aportes mensuales mucho mayores para alcanzar el mismo saldo final."
             }
           }
         ]
@@ -183,22 +199,39 @@
     </div>
 
     <article class="seo-content">
-      <h2>¿Cómo funciona el interés compuesto?</h2>
-      <p>A diferencia del interés simple —donde los rendimientos se calculan únicamente sobre el capital inicial—, el interés compuesto reinvierte las ganancias obtenidas en cada período. De esta forma, los intereses generan nuevos intereses de manera exponencial con el paso del tiempo.</p>
+      <h2>¿Cómo funciona el interés compuesto y por qué acelera tu patrimonio?</h2>
+      <p>A diferencia del interés simple —donde los rendimientos se calculan únicamente sobre el capital inicial—, el interés compuesto reinvierte automáticamente las ganancias obtenidas en cada período. De esta forma, los intereses generan nuevos intereses (el llamado efecto "bola de nieve"), haciendo que tu capital crezca de manera exponencial con el paso del tiempo.</p>
+
+      <h3>Ejemplo práctico: $1,000 iniciales + $150 al mes al 8% anual durante 10 años</h3>
+      <p>Supongamos que comienzas hoy con un capital de <strong>$1,000</strong>, realizas aportes constantes de <strong>$150 cada mes</strong> y obtienes un rendimiento promedio del <strong>8% anual</strong> capitalizado mensualmente durante <strong>10 años</strong>:</p>
+      <ul>
+        <li><strong>Total salido de tu bolsillo:</strong> $1,000 iniciales + ($150 × 120 meses) = <strong>$19,000.00</strong>.</li>
+        <li><strong>Intereses compuestos generados:</strong> <strong>$10,662.21</strong> (más del 56% extra sobre lo que aportaste).</li>
+        <li><strong>Saldo final acumulado:</strong> <strong>$29,662.21</strong> (y si mantuvieras el mismo ritmo hasta los 20 años, superarías los $88,000).</li>
+      </ul>
+      <p>Si ya tienes una cifra objetivo definida y quieres saber cuánto apartar cada mes para llegar a ella en una fecha concreta, utiliza nuestra <a href="plan-ahorro.html">Calculadora de Meta de Ahorro</a>, o mide el rendimiento anualizado de una inversión pasada con la <a href="calculadora-roi.html">Calculadora de ROI y CAGR</a>.</p>
 
       <h3>Fórmula aplicada</h3>
       <div class="formula-box">VF = P × (1 + r/n)^(n×t) + PMT × [ ((1 + r/n)^(n×t) - 1) / (r/n) ]</div>
-      <p>Donde <strong>P</strong> es el capital inicial, <strong>PMT</strong> el aporte mensual, <strong>r</strong> la tasa de interés anual en decimal, <strong>n</strong> los períodos por año (12) y <strong>t</strong> el tiempo en años.</p>
+      <p>Donde <strong>P</strong> es el capital inicial, <strong>PMT</strong> el aporte mensual constante, <strong>r</strong> la tasa de interés anual expresada en decimal, <strong>n</strong> los períodos de capitalización por año (12) y <strong>t</strong> el horizonte en años.</p>
 
       <h3>Preguntas frecuentes</h3>
       <div class="faq-list">
         <details class="faq-item">
-          <summary>¿Qué influye más: la tasa o el tiempo?</summary>
-          <p>En plazos largos (más de 10 o 15 años), el tiempo suele tener un impacto mayor que una pequeña diferencia en la tasa, porque la curva exponencial acelera en los últimos años.</p>
+          <summary>¿Qué influye más en el interés compuesto: la tasa o el tiempo?</summary>
+          <p>En plazos largos (más de 10 o 15 años), el tiempo suele tener un impacto mayor que una pequeña diferencia en la tasa, porque la curva exponencial acelera en los últimos años gracias a la reinversión acumulada.</p>
         </details>
         <details class="faq-item">
           <summary>¿Puedo compartir una simulación específica?</summary>
-          <p>Sí. Pulsa el botón <strong>Compartir enlace</strong> para copiar una URL que guarda exactamente los montos, tasa y años que configuraste.</p>
+          <p>Sí. Pulsa el botón <strong>Compartir enlace</strong> para copiar una URL que guarda exactamente los montos, la tasa anual y los años que configuraste.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo funciona la Regla del 72 en el interés compuesto?</summary>
+          <p>La Regla del 72 estima cuántos años tardará en duplicarse una inversión sin aportes adicionales: divide 72 entre la tasa de interés anual. Por ejemplo, al 8% anual tu capital se duplica aproximadamente cada 9 años (72 / 8 = 9).</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Por qué conviene empezar a invertir aunque el aporte mensual sea bajo?</summary>
+          <p>Porque cada aporte mensual temprano tiene más años para capitalizarse y generar intereses sobre intereses. Postergar 5 años el inicio obliga a realizar aportes mensuales mucho mayores para alcanzar el mismo saldo final.</p>
         </details>
       </div>
     </article>

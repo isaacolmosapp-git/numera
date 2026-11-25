@@ -34,18 +34,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is the difference between amortized and simple interest loans?",
+            "name": "What is the difference between the French amortization system and simple interest?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In an amortized loan (reducing balance), monthly interest is charged only on your remaining principal balance, lowering total interest paid. In a simple (flat-rate) loan, interest is calculated on the full original principal for the entire term, resulting in higher total interest."
+              "text": "Under the French system, monthly interest is calculated solely on the remaining unpaid principal balance, resulting in lower total interest. Under simple (flat-rate) interest, interest is calculated on the full initial loan amount across the entire term, leading to a higher monthly payment."
             }
           },
           {
             "@type": "Question",
-            "name": "How can I lower the total interest paid on a loan?",
+            "name": "How can I reduce the total cost of a loan?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Choosing a shorter loan term, opting for a reducing-balance amortized loan, or making extra principal-only payments significantly cuts total interest."
+              "text": "You can lower total interest by choosing a shorter repayment term, selecting loans calculated on a declining balance (French system), or making extra principal-only payments to shrink the balance on which future interest accrues."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you convert an annual interest rate to a monthly rate?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For a nominal annual interest rate, divide the yearly percentage by 12 months (for example, 12% APR equals 1% per month). Our calculator lets you toggle directly between annual and monthly rates without manual conversions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When making extra principal payments, is it better to shorten the term or lower the monthly payment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Financially, shortening the loan term saves the most in total interest because the principal remains outstanding for less time. Lowering the monthly payment, on the other hand, frees up immediate monthly cash flow."
             }
           }
         ]
@@ -193,26 +209,42 @@
     </div>
 
     <article class="seo-content">
-      <h2>Amortized vs. Simple Interest Loans</h2>
-      <p>When comparing financing offers, knowing how interest is calculated can save you significant money:</p>
+      <h2>French Amortization System vs. Simple Interest in Loans</h2>
+      <p>When applying for a personal, auto, mortgage, or business loan, the amortization method determines how much interest you will pay on top of the borrowed principal. This tool lets you compare both common structures in seconds and export the full repayment schedule to Excel or PDF:</p>
       <ul>
-        <li><strong>Amortized (French / Reducing Balance):</strong> Used by banks for mortgages, auto loans, and standard personal loans. Interest is calculated each month solely on your remaining principal balance.</li>
-        <li><strong>Simple (Flat-Rate Interest):</strong> Common in short-term commercial or direct financing. Total interest is calculated upfront on the entire initial principal across all months and divided equally.</li>
+        <li><strong>French System (Declining Balance):</strong> The standard used by banks and regulated lenders. You pay a fixed monthly installment throughout the loan term, while interest each month is calculated strictly on the remaining unpaid principal. Early payments go mostly toward interest; later payments pay down principal faster.</li>
+        <li><strong>Simple Interest (Flat-Rate Linear Payment):</strong> Common in retail installment plans, equipment financing, or direct private loans. Interest is calculated on 100% of the initial principal across the entire term regardless of monthly repayments, making the effective borrowing cost significantly higher.</li>
       </ul>
 
+      <h3>Practical Example: $5,000 Loan Over 24 Months at 12% Annual Interest</h3>
+      <p>Suppose you borrow <strong>$5,000</strong> for <strong>2 years (24 months)</strong> at a <strong>12% annual rate</strong> (1% per month). Here is how the numbers compare under each method:</p>
+      <ul>
+        <li><strong>French System:</strong> Your monthly payment is <strong>$235.37</strong>. Over 24 months, you pay <strong>$648.82</strong> in total interest (total repayment of <strong>$5,648.82</strong>).</li>
+        <li><strong>Simple Interest:</strong> Fixed interest equals $5,000 × 12% × 2 years = <strong>$1,200.00</strong>. Your monthly payment rises to <strong>$258.33</strong> and total repayment reaches <strong>$6,200.00</strong> (nearly double the interest cost).</li>
+      </ul>
+      <p>Before taking on a fixed monthly installment, make sure it fits comfortably within your income using our <a href="monthly-budget.html">50/30/20 Monthly Budget Calculator</a>, or plan a larger down payment with the <a href="savings-goal.html">Savings Goal Calculator</a>.</p>
+
       <h3>Formulas Used</h3>
-      <div class="formula-box">Amortized: M = P × [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]<br>Simple: M = [ P + (P × r × n) ] / n</div>
-      <p>Where <strong>P</strong> is the loan principal, <strong>r</strong> is the monthly interest rate, and <strong>n</strong> is the total number of monthly payments.</p>
+      <div class="formula-box">French: Payment = P × [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]<br>Simple: Payment = [ P + (P × r × n) ] / n</div>
+      <p>Where <strong>P</strong> is the loan principal, <strong>r</strong> is the monthly interest rate in decimal form (e.g., 1% = 0.01), and <strong>n</strong> is the total number of monthly installments.</p>
 
       <h3>Frequently Asked Questions</h3>
       <div class="faq-list">
         <details class="faq-item">
-          <summary>What is the difference between amortized and simple interest loans?</summary>
-          <p>In an amortized loan (reducing balance), monthly interest is charged only on your remaining principal balance, lowering total interest paid. In a simple (flat-rate) loan, interest is calculated on the full original principal for the entire term, resulting in higher total interest.</p>
+          <summary>What is the difference between the French amortization system and simple interest?</summary>
+          <p>Under the French system, monthly interest is calculated solely on the remaining unpaid principal balance, resulting in lower total interest. Under simple (flat-rate) interest, interest is calculated on the full initial loan amount across the entire term, leading to a higher monthly payment.</p>
         </details>
         <details class="faq-item">
-          <summary>How can I lower the total interest paid on a loan?</summary>
-          <p>Choosing a shorter loan term, opting for a reducing-balance amortized loan, or making extra principal-only payments significantly cuts total interest.</p>
+          <summary>How can I reduce the total cost of a loan?</summary>
+          <p>You can lower total interest by choosing a shorter repayment term, selecting loans calculated on a declining balance (French system), or making extra principal-only payments to shrink the balance on which future interest accrues.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do you convert an annual interest rate to a monthly rate?</summary>
+          <p>For a nominal annual interest rate, divide the yearly percentage by 12 months (for example, 12% APR equals 1% per month). Our calculator lets you toggle directly between annual and monthly rates without manual conversions.</p>
+        </details>
+        <details class="faq-item">
+          <summary>When making extra principal payments, is it better to shorten the term or lower the monthly payment?</summary>
+          <p>Financially, shortening the loan term saves the most in total interest because the principal remains outstanding for less time. Lowering the monthly payment, on the other hand, frees up immediate monthly cash flow.</p>
         </details>
       </div>
     </article>

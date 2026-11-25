@@ -524,12 +524,6 @@ main {
   background-color: var(--bg-surface-alt);
 }
 
-/* .schedule-summary::after {
-  content: '+';
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--accent);
-} */
 
 .schedule-details[open] .schedule-summary::after {
   content: '−';
@@ -748,6 +742,17 @@ main {
 .seo-content p {
   color: var(--text-secondary);
   margin-bottom: 1.2rem;
+}
+
+.seo-content a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.seo-content a:hover {
+  opacity: 0.85;
 }
 
 .formula-box {

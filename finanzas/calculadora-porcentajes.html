@@ -47,6 +47,22 @@
               "@type": "Answer",
               "text": "Se resta el valor inicial al valor final, se divide ese resultado entre el valor inicial y se multiplica por 100. Un resultado positivo indica aumento y uno negativo indica disminución."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo sacar el precio base sin IVA a partir de un precio con impuesto incluido?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Divide el precio total entre (1 + tasa de IVA en decimal). Por ejemplo, si un artículo cuesta $116 con 16% de IVA incluido, divide 116 entre 1.16 para obtener el precio neto de $100."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Es lo mismo aplicar un descuento del 20% + 10% adicional que un 30% directo?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Los descuentos sucesivos se aplican de forma encadenada sobre el saldo restante: un 20% deja el precio en 80%, y un 10% sobre ese 80% equivale a un 8% adicional, dando un descuento real acumulado del 28%."
+            }
           }
         ]
       }
@@ -190,13 +206,23 @@
     </div>
 
     <article class="seo-content">
-      <h2>Guía rápida para calcular porcentajes y descuentos</h2>
-      <p>Tanto al comprar en oferta como al fijar precios comerciales o analizar variaciones de ventas, dominar tres operaciones básicas de porcentaje evita errores de cálculo:</p>
+      <h2>Guía rápida para calcular porcentajes, descuentos e IVA</h2>
+      <p>Tanto al evaluar ofertas comerciales como al facturar con impuestos o medir variaciones de precios e ingresos, dominar las tres operaciones principales de porcentaje evita errores frecuentes de cálculo. Además, puedes guardar cada operación en tu historial local y exportar toda la lista a Excel o PDF:</p>
       <ul>
-        <li><strong>Aplicar un descuento:</strong> Multiplica el precio original por <code>(1 - % Descuento / 100)</code>. Por ejemplo, un 25 % de descuento equivale a multiplicar el precio por <code>0.75</code>.</li>
-        <li><strong>Calcular un porcentaje directo:</strong> Multiplica la cantidad base por el porcentaje deseado y divide entre 100.</li>
-        <li><strong>Variación porcentual:</strong> Mide cuánto subió o bajó una cifra respecto a su valor inicial mediante <code>[(Final - Inicial) / Inicial] × 100</code>.</li>
+        <li><strong>Aplicar un descuento comercial:</strong> Multiplica el precio original por <code>(1 - % Descuento / 100)</code>. Por ejemplo, un 25 % de descuento equivale a multiplicar el precio por <code>0.75</code>. Si además aplica IVA, el impuesto se calcula sobre el monto ya descontado.</li>
+        <li><strong>Calcular un porcentaje directo (X% de Y):</strong> Multiplica la cantidad base por el porcentaje deseado y divide entre 100. Es ideal para estimar comisiones de venta, propinas, retenciones o impuestos individuales.</li>
+        <li><strong>Variación porcentual (De X a Y):</strong> Mide cuánto subió o bajó una cifra respecto a su valor inicial mediante <code>[(Final - Inicial) / Inicial] × 100</code>.</li>
       </ul>
+
+      <h3>Ejemplo práctico: Compra con descuento del 25% + IVA del 16%</h3>
+      <p>Imagina un producto con precio de etiqueta de <strong>$120.00</strong> que tiene una rebaja del <strong>25%</strong> y sobre el cual debes pagar un <strong>16% de IVA</strong>:</p>
+      <ul>
+        <li><strong>1. Ahorro por descuento:</strong> $120.00 × 25% = <strong>-$30.00</strong>.</li>
+        <li><strong>2. Subtotal rebajado:</strong> $120.00 - $30.00 = <strong>$90.00</strong>.</li>
+        <li><strong>3. Impuesto / IVA (16%):</strong> $90.00 × 16% = <strong>+$14.40</strong>.</li>
+        <li><strong>4. Precio final a pagar:</strong> $90.00 + $14.40 = <strong>$104.40</strong>.</li>
+      </ul>
+      <p>Si eres comerciante y necesitas fijar precios de venta asegurando tu utilidad neta antes de ofrecer rebajas, utiliza nuestra <a href="margen-ganancia.html">Calculadora de Margen de Ganancia</a>, o controla el impacto de tus compras dentro de tu <a href="presupuesto-mensual.html">Presupuesto Mensual 50/30/20</a>.</p>
 
       <h3>Preguntas frecuentes</h3>
       <div class="faq-list">
@@ -207,6 +233,14 @@
         <details class="faq-item">
           <summary>¿Cómo se calcula la variación porcentual entre dos valores?</summary>
           <p>Se resta el valor inicial al valor final, se divide ese resultado entre el valor inicial y se multiplica por 100. Un resultado positivo indica aumento y uno negativo indica disminución.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo sacar el precio base sin IVA a partir de un precio con impuesto incluido?</summary>
+          <p>Divide el precio total entre (1 + tasa de IVA en decimal). Por ejemplo, si un artículo cuesta $116 con 16% de IVA incluido, divide 116 entre 1.16 para obtener el precio neto de $100.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Es lo mismo aplicar un descuento del 20% + 10% adicional que un 30% directo?</summary>
+          <p>No. Los descuentos sucesivos se aplican de forma encadenada sobre el saldo restante: un 20% deja el precio en 80%, y un 10% sobre ese 80% equivale a un 8% adicional, dando un descuento real acumulado del 28%.</p>
         </details>
       </div>
     </article>

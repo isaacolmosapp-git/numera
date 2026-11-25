@@ -34,18 +34,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What matters more: interest rate or time?",
+            "name": "What matters more in compound interest: the interest rate or time?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Over longer horizons (10+ years), time generally outweighs small rate differences because exponential compounding accelerates most sharply in later years."
+              "text": "Over long horizons (more than 10 to 15 years), time typically has a greater impact than a small difference in rate because the exponential curve accelerates sharply in the later years through reinvested gains."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I share a specific scenario?",
+            "name": "Can I share a specific calculation scenario?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Click Share link to copy a direct URL containing your exact deposit, contribution, rate, and years."
+              "text": "Yes. Click the Share link button to copy a custom URL that preserves the exact starting balance, monthly contribution, interest rate, and years you configured."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the Rule of 72 work with compound interest?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Rule of 72 estimates how many years it takes to double a lump-sum investment: divide 72 by your annual interest rate. For example, at an 8% annual return, your money doubles roughly every 9 years (72 / 8 = 9)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is it better to start investing early even with small monthly contributions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Early monthly deposits have more years to compound and earn interest on top of prior interest. Delaying by just 5 years forces you to contribute substantially more each month to reach the same final balance."
             }
           }
         ]
@@ -183,22 +199,39 @@
     </div>
 
     <article class="seo-content">
-      <h2>How does compound interest work?</h2>
-      <p>Unlike simple interest—which only calculates returns on your original principal—compound interest reinvests your earnings each period so that your interest generates additional interest over time.</p>
+      <h2>How Compound Interest Works and Accelerates Wealth Growth</h2>
+      <p>Unlike simple interest—where returns are calculated strictly on your original principal—compound interest automatically reinvests the earnings generated in each period. As a result, your returns begin earning returns of their own (the snowball effect), causing your balance to grow exponentially over time.</p>
 
-      <h3>Formula used</h3>
+      <h3>Practical Example: $1,000 Initial + $150/Month at 8% Annual Return for 10 Years</h3>
+      <p>Suppose you start today with <strong>$1,000</strong>, contribute <strong>$150 every month</strong>, and earn an average <strong>8% annual return</strong> compounded monthly over <strong>10 years</strong>:</p>
+      <ul>
+        <li><strong>Total out-of-pocket contributions:</strong> $1,000 initial + ($150 × 120 months) = <strong>$19,000.00</strong>.</li>
+        <li><strong>Compound interest earned:</strong> <strong>$10,662.21</strong> (more than 56% on top of your principal).</li>
+        <li><strong>Estimated final balance:</strong> <strong>$29,662.21</strong> (and keeping the same pace for 20 years would grow past $88,000).</li>
+      </ul>
+      <p>If you already have a specific target amount in mind and want to know how much to save each month to hit your deadline, use our <a href="savings-goal.html">Savings Goal Calculator</a>, or evaluate the annualized return of a completed investment with the <a href="roi-calculator.html">ROI &amp; CAGR Calculator</a>.</p>
+
+      <h3>Formula Used</h3>
       <div class="formula-box">FV = P × (1 + r/n)^(n×t) + PMT × [ ((1 + r/n)^(n×t) - 1) / (r/n) ]</div>
-      <p>Where <strong>P</strong> is your initial deposit, <strong>PMT</strong> is the monthly contribution, <strong>r</strong> is the annual interest rate in decimal form, <strong>n</strong> is compounding periods per year (12), and <strong>t</strong> is time in years.</p>
+      <p>Where <strong>P</strong> is the initial principal, <strong>PMT</strong> is the recurring monthly contribution, <strong>r</strong> is the annual interest rate in decimal form, <strong>n</strong> is the compounding frequency per year (12), and <strong>t</strong> is the time horizon in years.</p>
 
       <h3>Frequently Asked Questions</h3>
       <div class="faq-list">
         <details class="faq-item">
-          <summary>What matters more: interest rate or time?</summary>
-          <p>Over longer horizons (10+ years), time generally outweighs small rate differences because exponential compounding accelerates most sharply in later years.</p>
+          <summary>What matters more in compound interest: the interest rate or time?</summary>
+          <p>Over long horizons (more than 10 to 15 years), time typically has a greater impact than a small difference in rate because the exponential curve accelerates sharply in the later years through reinvested gains.</p>
         </details>
         <details class="faq-item">
-          <summary>Can I share a specific scenario?</summary>
-          <p>Yes. Click <strong>Share link</strong> to copy a direct URL containing your exact deposit, contribution, rate, and years.</p>
+          <summary>Can I share a specific calculation scenario?</summary>
+          <p>Yes. Click the <strong>Share link</strong> button to copy a custom URL that preserves the exact starting balance, monthly contribution, interest rate, and years you configured.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How does the Rule of 72 work with compound interest?</summary>
+          <p>The Rule of 72 estimates how many years it takes to double a lump-sum investment: divide 72 by your annual interest rate. For example, at an 8% annual return, your money doubles roughly every 9 years (72 / 8 = 9).</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why is it better to start investing early even with small monthly contributions?</summary>
+          <p>Early monthly deposits have more years to compound and earn interest on top of prior interest. Delaying by just 5 years forces you to contribute substantially more each month to reach the same final balance.</p>
         </details>
       </div>
     </article>

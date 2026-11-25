@@ -45,7 +45,23 @@
             "name": "¿Cómo puedo reducir el costo total de un crédito?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Reduciendo el plazo en meses o años, eligiendo créditos sobre saldo insoluto (sistema francés) o realizando abonos directos a capital."
+              "text": "Reduciendo el plazo en meses o años, eligiendo créditos sobre saldo insoluto (sistema francés) o realizando abonos directos a capital para disminuir la base sobre la cual se calculan los intereses futuros."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo convertir una tasa de interés anual a tasa mensual?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Para una tasa nominal anual, divide el porcentaje anual entre 12 meses (por ejemplo, 12% anual equivale a 1% mensual). En nuestra calculadora puedes alternar directamente entre tasa anual y mensual sin hacer conversiones manuales."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué conviene más al hacer un abono extra a capital: reducir plazo o reducir cuota?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Desde el punto de vista financiero, reducir el plazo genera el mayor ahorro en intereses totales porque el capital permanece menos tiempo generando cargos. Reducir la cuota, en cambio, mejora tu flujo de caja mensual inmediato."
             }
           }
         ]
@@ -194,15 +210,23 @@
 
     <article class="seo-content">
       <h2>Sistema Francés vs. Interés Simple en Préstamos</h2>
-      <p>Al solicitar financiamiento existen dos métodos principales para calcular tus cuotas:</p>
+      <p>Al solicitar un crédito personal, automotriz, hipotecario o comercial, el método de amortización determina cuánto dinero terminarás pagando por encima del capital recibido. Nuestra herramienta te permite comparar en segundos los dos esquemas más utilizados y descargar la tabla completa en Excel o PDF:</p>
       <ul>
-        <li><strong>Sistema Francés (Saldo insoluto):</strong> Es el estándar bancario. Pagas una cuota fija mensual, pero los intereses se calculan cada mes únicamente sobre el capital pendiente. A medida que amortizas deuda, pagas menos intereses.</li>
-        <li><strong>Interés Simple (Cuota lineal directa):</strong> Muy común en créditos comerciales o préstamos personales directos. El interés total se calcula sobre el monto inicial completo multiplicado por el tiempo, y el total resultante se divide en partes iguales.</li>
+        <li><strong>Sistema Francés (Saldo insoluto):</strong> Es el estándar en bancos y entidades financieras reguladas. Pagas una cuota mensual fija durante todo el crédito, pero cada mes los intereses se calculan únicamente sobre el capital pendiente de pago. Al principio amortizas menos capital y más intereses; hacia el final ocurre lo inverso.</li>
+        <li><strong>Interés Simple (Cuota lineal directa):</strong> Frecuente en financiamientos comerciales rápidos, electrodomésticos o préstamos informales. El interés se calcula sobre el 100% del monto inicial multiplicado por todo el plazo, sin importar que vayas devolviendo dinero cada mes, lo que encarece significativamente el costo real del crédito.</li>
       </ul>
+
+      <h3>Ejemplo práctico: Préstamo de $5,000 a 24 meses (12% anual)</h3>
+      <p>Supongamos que solicitas <strong>$5,000</strong> a un plazo de <strong>2 años (24 meses)</strong> con una tasa del <strong>12% anual</strong> (1% mensual). Así cambian tus números según el sistema elegido:</p>
+      <ul>
+        <li><strong>Con Sistema Francés:</strong> Tu cuota mensual es de <strong>$235.37</strong>. Al final de los 24 meses habrás pagado <strong>$648.82</strong> en intereses (costo total de <strong>$5,648.82</strong>).</li>
+        <li><strong>Con Interés Simple:</strong> El interés fijo es de $5,000 × 12% × 2 años = <strong>$1,200.00</strong>. Tu cuota sube a <strong>$258.33</strong> al mes y pagarás <strong>$6,200.00</strong> en total (casi el doble de intereses).</li>
+      </ul>
+      <p>Antes de comprometerte con una cuota fija, verifica que no supere el 20% o 30% de tus ingresos netos utilizando nuestra <a href="presupuesto-mensual.html">Calculadora de Presupuesto Mensual 50/30/20</a>, o evalúa acumular una entrada inicial más alta con la <a href="plan-ahorro.html">Calculadora de Meta de Ahorro</a>.</p>
 
       <h3>Fórmulas aplicadas</h3>
       <div class="formula-box">Francés: Cuota = P × [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]<br>Simple: Cuota = [ P + (P × r × n) ] / n</div>
-      <p>Donde <strong>P</strong> es el monto solicitado, <strong>r</strong> es la tasa de interés mensual y <strong>n</strong> el total de meses.</p>
+      <p>Donde <strong>P</strong> es el monto solicitado, <strong>r</strong> es la tasa de interés mensual expresada en decimal (ej. 1% = 0.01) y <strong>n</strong> representa el número total de cuotas mensuales.</p>
 
       <h3>Preguntas frecuentes</h3>
       <div class="faq-list">
@@ -212,7 +236,15 @@
         </details>
         <details class="faq-item">
           <summary>¿Cómo puedo reducir el costo total de un crédito?</summary>
-          <p>Reduciendo el plazo en meses o años, eligiendo créditos sobre saldo insoluto (sistema francés) o realizando abonos directos a capital.</p>
+          <p>Reduciendo el plazo en meses o años, eligiendo créditos sobre saldo insoluto (sistema francés) o realizando abonos directos a capital para disminuir la base sobre la cual se calculan los intereses futuros.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo convertir una tasa de interés anual a tasa mensual?</summary>
+          <p>Para una tasa nominal anual, divide el porcentaje anual entre 12 meses (por ejemplo, 12% anual equivale a 1% mensual). En nuestra calculadora puedes alternar directamente entre tasa anual y mensual sin hacer conversiones manuales.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué conviene más al hacer un abono extra a capital: reducir plazo o reducir cuota?</summary>
+          <p>Desde el punto de vista financiero, reducir el plazo genera el mayor ahorro en intereses totales porque el capital permanece menos tiempo generando cargos. Reducir la cuota, en cambio, mejora tu flujo de caja mensual inmediato.</p>
         </details>
       </div>
     </article>

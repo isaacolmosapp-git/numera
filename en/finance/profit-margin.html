@@ -34,18 +34,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Why is sales tax added at the end?",
+            "name": "Why is sales tax or VAT applied at the end?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sales tax or VAT is collected on behalf of tax authorities and is not part of your revenue or margin. Your net price must be set first to protect your profit."
+              "text": "Sales tax or VAT is collected on behalf of tax authorities and is not part of your revenue or commercial margin. Therefore, the net selling price is calculated first based on your target margin, and tax is added afterward."
             }
           },
           {
             "@type": "Question",
-            "name": "What is a healthy profit margin?",
+            "name": "What is a good profit margin?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "It varies by industry: retail typically ranges from 25% to 50%, while digital products and professional services often achieve 70% or higher due to low variable costs."
+              "text": "It varies by industry: retail businesses typically aim for 25% to 50% gross margins, whereas professional services, consulting, or digital software often exceed 70% due to low variable costs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why doesn't adding 30% to my cost give me a 30% profit margin?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Multiplying your cost by 1.30 applies a 30% markup on cost rather than margin on selling price, leaving you with only a 23.08% profit margin. To achieve a true 30% profit margin, you must divide your unit cost by 0.70 (1 - 0.30)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I build and download a full product price list?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Enter each product name in the input bar inside the results panel and click Save. All items stay stored locally in your browser and can be exported together into a formatted Excel (.xlsx) or PDF (.pdf) report in one click."
             }
           }
         ]
@@ -194,25 +210,43 @@
     </div>
 
     <article class="seo-content">
-      <h2>Profit Margin vs. Markup Explained</h2>
-      <p>A common pricing mistake is confusing <strong>profit margin</strong> with <strong>markup</strong>:</p>
+      <h2>Profit Margin vs. Markup: How to Price Products Accurately</h2>
+      <p>One of the most expensive pricing mistakes in retail and small business is confusing <strong>gross profit margin</strong> with <strong>markup on cost</strong>, which leads to underpricing inventory and shrinking net profits:</p>
       <ul>
-        <li><strong>Profit margin:</strong> The percentage of the <em>net selling price</em> that remains as profit.</li>
-        <li><strong>Markup:</strong> The percentage added on top of your <em>unit cost</em> to arrive at the selling price.</li>
+        <li><strong>Profit Margin:</strong> The percentage of the <em>net selling price</em> that remains as gross profit after covering the unit cost of the item.</li>
+        <li><strong>Markup:</strong> The percentage added on top of your <em>unit cost</em> to set the selling price. Markup is always higher than the resulting profit margin.</li>
       </ul>
 
-      <h3>Formula Used</h3>
-      <div class="formula-box">Net Price = Cost / (1 - Margin %)<br>Final Price = Net Price × (1 + Tax %)</div>
+      <h3>Practical Example: $50 Unit Cost With 30% Target Margin and 16% Sales Tax</h3>
+      <p>Suppose you source or manufacture an item for <strong>$50.00</strong> and want a true <strong>30% net profit margin</strong> where a <strong>16% sales tax / VAT</strong> applies:</p>
+      <ul>
+        <li><strong>1. Net selling price (before tax):</strong> $50.00 / (1 - 0.30) = <strong>$71.43</strong> (simply adding 30% to cost would price it at $65.00, yielding just a 23.1% margin).</li>
+        <li><strong>2. Net profit per unit:</strong> $71.43 - $50.00 = <strong>$21.43</strong> (equivalent to a <strong>42.9% markup</strong> over cost).</li>
+        <li><strong>3. Final customer price (with tax):</strong> $71.43 × 1.16 = <strong>$82.86</strong>.</li>
+      </ul>
+      <p>Once your unit prices and margins are locked in, find out how many units you need to sell each month to cover rent, payroll, and overhead using our <a href="break-even.html">Break-Even Calculator</a>, or model seasonal sales without eroding profit via the <a href="percentage-calculator.html">Percentage &amp; Discount Calculator</a>.</p>
+
+      <h3>Formulas Used</h3>
+      <div class="formula-box">Net Price = Unit Cost / (1 - Margin %)<br>Final Price = Net Price × (1 + Tax %)</div>
+      <p>Where <strong>Margin %</strong> and <strong>Tax %</strong> are expressed as decimals (for example, 30% = 0.30 and 16% = 0.16).</p>
 
       <h3>Frequently Asked Questions</h3>
       <div class="faq-list">
         <details class="faq-item">
-          <summary>Why is sales tax added at the end?</summary>
-          <p>Sales tax or VAT is collected on behalf of tax authorities and is not part of your revenue or margin. Your net price must be set first to protect your profit.</p>
+          <summary>Why is sales tax or VAT applied at the end?</summary>
+          <p>Sales tax or VAT is collected on behalf of tax authorities and is not part of your revenue or commercial margin. Therefore, the net selling price is calculated first based on your target margin, and tax is added afterward.</p>
         </details>
         <details class="faq-item">
-          <summary>What is a healthy profit margin?</summary>
-          <p>It varies by industry: retail typically ranges from 25% to 50%, while digital products and professional services often achieve 70% or higher due to low variable costs.</p>
+          <summary>What is a good profit margin?</summary>
+          <p>It varies by industry: retail businesses typically aim for 25% to 50% gross margins, whereas professional services, consulting, or digital software often exceed 70% due to low variable costs.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why doesn't adding 30% to my cost give me a 30% profit margin?</summary>
+          <p>Multiplying your cost by 1.30 applies a 30% markup on cost rather than margin on selling price, leaving you with only a 23.08% profit margin. To achieve a true 30% profit margin, you must divide your unit cost by 0.70 (1 - 0.30).</p>
+        </details>
+        <details class="faq-item">
+          <summary>How can I build and download a full product price list?</summary>
+          <p>Enter each product name in the input bar inside the results panel and click Save. All items stay stored locally in your browser and can be exported together into a formatted Excel (.xlsx) or PDF (.pdf) report in one click.</p>
         </details>
       </div>
     </article>
